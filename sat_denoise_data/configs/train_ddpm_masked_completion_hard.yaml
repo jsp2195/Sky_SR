@@ -1,0 +1,46 @@
+manifest: data/manifests/patches_diverse.jsonl
+patch_dir: data/patches_diverse
+output_dir: outputs/ddpm_masked_completion_hard
+
+diffusion_target: masked_completion
+base_ckpt: outputs/unet_hard_50k_b6w8/ckpt_best.pt
+
+return_degradation_mask: true
+return_reliability_map: true
+
+ddpm_condition_use_mask: true
+ddpm_condition_use_reliability: true
+
+masked_completion_target: residual
+masked_loss_min_weight: 0.05
+masked_context_consistency_weight: 0.05
+
+residual_scale: auto
+residual_clip: 0.10
+residual_blend: 1.0
+
+degradation_profile: hard
+ddpm_train_degradation_types:
+  - mask_dropout
+  - mixed_structured
+  - lowfreq_atmospheric_bias
+  - blur_downsample_upsample
+
+batch_size: 2
+epochs: 1
+lr: 1.0e-4
+num_workers: 4
+max_samples: 128
+val_fraction: 0.1
+seed: 42
+
+image_size: 256
+timesteps: 1000
+sampling_steps: 50
+sample_every: 500
+save_step_train_batch_samples: true
+save_step_fixed_val_samples: false
+save_every: 1
+base_channels: 32
+channel_mults: [1, 2, 4, 4]
+beta_schedule: cosine

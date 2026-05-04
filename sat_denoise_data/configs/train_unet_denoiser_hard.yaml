@@ -1,0 +1,50 @@
+manifest: data/manifests/patches.jsonl
+patch_dir: data/patches
+output_dir: outputs/unet_hard
+
+batch_size: 8
+epochs: 2
+lr: 1.0e-4
+num_workers: 2
+max_samples: 512
+val_fraction: 0.1
+seed: 42
+
+image_size: 256
+base_channels: 64
+channel_mults: [1, 2, 4, 4]
+
+degradation_profile: hard
+
+loss:
+  lambda_l1: 1.0
+  lambda_ssim: 0.0
+  lambda_grad: 0.25
+  lambda_tv: 0.0
+
+degradation_probs:
+  speckle_multiplicative: 0.26
+  blur: 0.04
+  downsample_upsample: 0.04
+  blur_downsample_upsample: 0.18
+  lowfreq_atmospheric_bias: 0.18
+  mixed_structured: 0.20
+  gaussian_additive: 0.03
+  mask_dropout: 0.07
+
+speckle_sigma_min: 0.10
+speckle_sigma_max: 0.30
+gaussian_sigma_min: 0.06
+gaussian_sigma_max: 0.25
+blur_sigma_min: 1.0
+blur_sigma_max: 3.0
+lowfreq_amplitude_min: 0.10
+lowfreq_amplitude_max: 0.35
+downsample_scale_choices: [2, 4, 4, 4, 4]
+mixed_strength_min: 0.05
+mixed_strength_max: 0.15
+mask_dropout_probability: 0.07
+mask_dropout_strength_min: 0.10
+mask_dropout_strength_max: 0.30
+
+sample_every_steps: 100

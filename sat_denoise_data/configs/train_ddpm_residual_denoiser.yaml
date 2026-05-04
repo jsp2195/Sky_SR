@@ -1,0 +1,71 @@
+manifest: data/manifests/patches_diverse.jsonl
+patch_dir: data/patches_diverse
+# Output dir for smoke runs. Real runs should override this on the command line.
+output_dir: outputs/ddpm_residual_smoke
+
+# Residual-DDPM mode: the DDPM refines the residual that a frozen,
+# already-trained residual U-Net leaves on the table.
+diffusion_target: residual
+# Smoke default; override on the command line for real runs to:
+# outputs/unet_diverse_50k_fast_b8w8/ckpt_best.pt
+base_ckpt: outputs/unet_diverse_50k_fast_b8w8/ckpt_best.pt
+
+# ---------------------------------------------------------------------------
+# Conservative residual-refinement defaults.
+# residual_scale normalizes the diffusion target so eps prediction has signal.
+# 'auto' estimates a robust std from a small subset of training samples and
+# clamps to a safe range; the resolved float is saved in the checkpoint.
+# residual_clip caps the magnitude of the sampled residual at inference, so
+# even a bad sample cannot push the image far from the U-Net base.
+# residual_blend is the default blend factor: final = base + blend * residual.
+# eval_blends controls the sweep performed by eval_ddpm_denoiser.py.
+# ---------------------------------------------------------------------------
+residual_scale: auto
+residual_clip: 0.10
+residual_blend: 0.25
+eval_blends: [0.0, 0.1, 0.25, 0.5, 1.0]
+
+batch_size: 2
+epochs: 1
+lr: 1.0e-4
+num_workers: 4
+max_samples: 128
+val_fraction: 0.1
+seed: 42
+
+image_size: 256
+timesteps: 1000
+sampling_steps: 50
+sample_every: 500
+save_step_train_batch_samples: true
+save_step_fixed_val_samples: false
+save_every: 1
+# DDPM U-Net is intentionally smaller than the base residual U-Net here. The
+# heavy lifting is the U-Net's job; the DDPM only needs capacity to model
+# the (small) residual distribution.
+base_channels: 32
+channel_mults: [1, 2, 4, 4]
+beta_schedule: cosine
+
+degradation_profile: balanced
+
+degradation_probs:
+  speckle_multiplicative: 0.25
+  blur: 0.15
+  downsample_upsample: 0.15
+  blur_downsample_upsample: 0.15
+  lowfreq_atmospheric_bias: 0.15
+  mixed_structured: 0.10
+  gaussian_additive: 0.05
+
+speckle_sigma_min: 0.06
+speckle_sigma_max: 0.20
+gaussian_sigma_min: 0.04
+gaussian_sigma_max: 0.18
+blur_sigma_min: 0.8
+blur_sigma_max: 2.0
+lowfreq_amplitude_min: 0.05
+lowfreq_amplitude_max: 0.20
+downsample_scale_choices: [2, 4]
+mixed_strength_min: 0.03
+mixed_strength_max: 0.10

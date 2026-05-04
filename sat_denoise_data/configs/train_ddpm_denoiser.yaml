@@ -1,0 +1,31 @@
+manifest: data/manifests/patches.jsonl
+patch_dir: data/patches
+output_dir: outputs/ddpm_smoke
+
+batch_size: 2
+epochs: 1
+lr: 1.0e-4
+num_workers: 2
+max_samples: 128
+val_fraction: 0.1
+seed: 42
+
+image_size: 256
+timesteps: 1000
+sampling_steps: 100
+sample_every: 500
+save_step_train_batch_samples: true
+save_step_fixed_val_samples: false
+save_every: 1
+base_channels: 32
+channel_mults: [1, 2, 4, 4]
+beta_schedule: cosine
+
+degradation_probs:
+  speckle_multiplicative: 0.25
+  blur: 0.15
+  downsample_upsample: 0.15
+  blur_downsample_upsample: 0.15
+  lowfreq_atmospheric_bias: 0.15
+  mixed_structured: 0.10
+  gaussian_additive: 0.05

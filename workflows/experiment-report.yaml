@@ -1,0 +1,19 @@
+name: experiment-report
+purpose: Produce a concise report from completed experiment work and recorded checks.
+steps:
+  - Read state, decisions, changed files, and test results.
+  - Summarize objective, setup, changes, metrics, and limitations.
+  - Link results to commands or artifacts by path.
+  - Record open questions and the next task.
+required_commands:
+  - state-of-affairs
+  - compact-state
+  - prep-pr
+exit_criteria:
+  - Report distinguishes evidence from interpretation.
+  - Limitations are explicit.
+  - Next task is actionable.
+failure_handling:
+  - Stop if metrics or run evidence are missing.
+  - Produce a gap report instead of inventing results.
+

@@ -1,0 +1,37 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+.DS_Store
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+dist/
+build/
+*.egg-info/
+
+# Data / outputs / generated artifacts
+data/
+datasets/
+outputs/
+sat_denoise_data/outputs/
+sat_denoise_data/data/
+sat_denoise_data/datasets/
+sat_denoise_data/previews/
+sat_denoise_data/debug_plots/
+sat_denoise_data/debug_samples/
+
+# ML artifacts
+checkpoints/
+artifacts/
+runs/
+wandb/
+logs/
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.safetensors

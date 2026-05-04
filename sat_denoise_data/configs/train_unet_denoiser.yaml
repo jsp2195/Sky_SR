@@ -1,0 +1,46 @@
+manifest: data/manifests/patches.jsonl
+patch_dir: data/patches
+output_dir: outputs/unet_smoke
+
+batch_size: 8
+epochs: 2
+lr: 1.0e-4
+num_workers: 2
+max_samples: 512
+val_fraction: 0.1
+seed: 42
+
+image_size: 256
+base_channels: 64
+channel_mults: [1, 2, 4, 4]
+
+degradation_profile: balanced
+
+loss:
+  lambda_l1: 1.0
+  lambda_ssim: 0.0
+  lambda_grad: 0.25
+  lambda_tv: 0.0
+
+degradation_probs:
+  speckle_multiplicative: 0.25
+  blur: 0.15
+  downsample_upsample: 0.15
+  blur_downsample_upsample: 0.15
+  lowfreq_atmospheric_bias: 0.15
+  mixed_structured: 0.10
+  gaussian_additive: 0.05
+
+speckle_sigma_min: 0.06
+speckle_sigma_max: 0.20
+gaussian_sigma_min: 0.04
+gaussian_sigma_max: 0.18
+blur_sigma_min: 0.8
+blur_sigma_max: 2.0
+lowfreq_amplitude_min: 0.05
+lowfreq_amplitude_max: 0.20
+downsample_scale_choices: [2, 4]
+mixed_strength_min: 0.03
+mixed_strength_max: 0.10
+
+sample_every_steps: 100

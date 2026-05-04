@@ -1,0 +1,13 @@
+[project]
+name = "claude-code-orchestrator"
+version = "0.1.0"
+description = "Minimal Claude Code orchestration control layer."
+requires-python = ">=3.10"
+dependencies = []
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]

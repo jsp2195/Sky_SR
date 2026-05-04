@@ -1,0 +1,21 @@
+name: bugfix
+purpose: Reproduce and fix one confirmed bug with minimal scope.
+steps:
+  - Inspect state, constraints, and the bug report.
+  - Reproduce the failure or inspect concrete logs.
+  - Identify the smallest root cause.
+  - Patch only the affected files.
+  - Run the failing check and the nearest targeted regression check.
+  - Review the diff for scope creep.
+required_commands:
+  - state-of-affairs
+  - fix-ci
+  - review-diff
+exit_criteria:
+  - Failure is fixed or a blocker is documented.
+  - Relevant check result is recorded.
+  - Diff is limited to the bug fix.
+failure_handling:
+  - Stop if reproduction evidence is unavailable.
+  - Escalate only with logs, suspected cause, and next diagnostic command.
+
