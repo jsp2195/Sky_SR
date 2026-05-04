@@ -1,0 +1,22 @@
+name: research-code
+purpose: Make research code reliable enough for iteration without overbuilding infrastructure.
+steps:
+  - Inspect scripts, notebooks, configs, data paths, and outputs.
+  - Identify one reproducibility or correctness task.
+  - Preserve experiment assumptions and data handling rules.
+  - Patch minimally.
+  - Run the smallest representative check.
+  - Record limitations and next experiment task.
+required_commands:
+  - inspect-repo
+  - build-phased-plan
+  - execute-next-task
+  - compact-state
+exit_criteria:
+  - One research workflow is clearer, safer, or more reproducible.
+  - Data and checkpoint directories remain excluded from context.
+  - Next experiment step is explicit.
+failure_handling:
+  - Stop if required data or checkpoints are unavailable.
+  - Document the missing artifact and a lightweight fallback check.
+

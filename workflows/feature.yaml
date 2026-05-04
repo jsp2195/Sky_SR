@@ -1,0 +1,23 @@
+name: feature
+purpose: Deliver one feature slice behind clear phase and test boundaries.
+steps:
+  - Inspect repo and current state.
+  - Build or read a phased plan.
+  - Select one next task.
+  - Implement the minimal feature slice.
+  - Add targeted tests when behavior changes.
+  - Run targeted checks and review the diff.
+required_commands:
+  - inspect-repo
+  - build-phased-plan
+  - execute-next-task
+  - write-tests
+  - review-diff
+exit_criteria:
+  - One feature slice meets its exit criteria.
+  - No later phase work is included.
+  - Tests or documented test gaps are present.
+failure_handling:
+  - Stop on ambiguous scope.
+  - Convert unresolved design questions into the next task.
+

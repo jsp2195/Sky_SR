@@ -1,0 +1,20 @@
+name: refactor
+purpose: Improve internal structure while preserving behavior.
+steps:
+  - Identify the exact refactor target and current behavior.
+  - Inspect tests that protect the behavior.
+  - Make the smallest structural change.
+  - Run targeted tests before and after when practical.
+  - Review diff for behavior changes and churn.
+required_commands:
+  - inspect-repo
+  - execute-next-task
+  - review-diff
+exit_criteria:
+  - Public behavior is unchanged.
+  - Diff is limited to the refactor target.
+  - Targeted checks pass or blockers are documented.
+failure_handling:
+  - Stop if behavior cannot be protected.
+  - Split broad refactors into smaller tasks.
+
