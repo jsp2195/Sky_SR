@@ -1,4 +1,4 @@
-# Sky_SR
+# Sky View Super Resolution
 
 **Satellite image restoration experiments for controlled degradation, deterministic recovery, and diffusion-based completion.**
 
