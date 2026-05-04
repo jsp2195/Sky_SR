@@ -12,48 +12,66 @@ help?
 
 ## Latest Visual Outputs
 
-The newest outputs are from a localized masked-completion DDPM smoke
-evaluation. Each row shows the full restoration path:
+The highlighted examples below come from the actual latest larger experiment
+outputs in this repo:
+
+- `sat_denoise_data/outputs/ddpm_masked_completion_hard_10k_eval_ddim`
+- `sat_denoise_data/outputs/unet_hard_50k_b6w8_eval`
+
+The masked-completion DDPM grids show the full restoration path:
 
 `degraded | mask | reliability | U-Net base | diffusion final | clean | uncertainty`
 
-The white mask marks the region where completion is allowed. The evaluation
-verifies that the diffusion stage leaves pixels outside that region unchanged.
+The white mask marks where DDPM completion is allowed. The evaluation verifies
+that the diffusion stage leaves pixels outside that region unchanged.
 
-![Localized masked-completion preview](docs/assets/masked_completion_localized_preview.png)
+![Masked-completion DDPM eval grid 255](docs/assets/ddpm_masked_completion_hard_10k_eval_grid_255_labeled.png)
 
-![Masked-completion evaluation grid 000](docs/assets/masked_completion_eval_grid_000_labeled.png)
+![Masked-completion DDPM eval grid 254](docs/assets/ddpm_masked_completion_hard_10k_eval_grid_254_labeled.png)
 
-![Masked-completion evaluation grid 001](docs/assets/masked_completion_eval_grid_001_labeled.png)
+![Masked-completion DDPM eval grid 253](docs/assets/ddpm_masked_completion_hard_10k_eval_grid_253_labeled.png)
 
-![Masked-completion evaluation grid 002](docs/assets/masked_completion_eval_grid_002_labeled.png)
+The U-Net eval grids show the deterministic restoration baseline:
 
-![Masked-completion evaluation grid 003](docs/assets/masked_completion_eval_grid_003_labeled.png)
+`degraded | restored | clean | abs error`
+
+![Hard U-Net eval grid 000](docs/assets/unet_hard_50k_b6w8_eval_grid_000_labeled.png)
+
+![Hard U-Net eval grid 001](docs/assets/unet_hard_50k_b6w8_eval_grid_001_labeled.png)
 
 ## Current Result Snapshot
 
-Latest localized masked-completion smoke eval:
+Hard U-Net eval on `unet_hard_50k_b6w8_eval`:
+
+| Metric | Degraded input | U-Net restored | Change |
+| --- | ---: | ---: | ---: |
+| PSNR | 24.94 | 32.21 | +7.26 |
+| MAE | 0.0487 | 0.0207 | -0.0280 |
+| SSIM | 0.6898 | 0.8948 | +0.2051 |
+
+Masked-completion DDPM eval on `ddpm_masked_completion_hard_10k_eval_ddim`:
 
 | Metric | Degraded input | U-Net base | Diffusion final |
 | --- | ---: | ---: | ---: |
-| PSNR | 24.50 | 35.67 | 34.71 |
-| MAE | 0.0153 | 0.0044 | 0.0052 |
-| SSIM | 0.9545 | 0.9802 | 0.9598 |
+| PSNR | 25.31 | 30.96 | 30.41 |
+| MAE | 0.0466 | 0.0223 | 0.0238 |
+| SSIM | 0.7785 | 0.9087 | 0.8891 |
 
 Additional checks from the same run:
 
 - Evaluation mode: `masked_completion`
-- Degradation type: `mask_dropout`
-- Mean mask area: `9.72%`
-- Samples evaluated: `8`
+- Degradation types: `mixed_structured`, `blur_downsample_upsample`,
+  `lowfreq_atmospheric_bias`, `mask_dropout`
+- Mean mask area: `89.14%`
+- Samples evaluated: `512`
 - Sampler: `ddim`
-- Diffusion samples per input: `2`
+- Diffusion samples per input: `4`
 - Outside-mask maximum difference: `0.0`
 
 The important interpretation is that the masked DDPM path is spatially safe in
-this run: it does not alter pixels outside the allowed mask. The U-Net base is
-still the stronger global reconstruction baseline on this small paired RGB
-benchmark.
+this run: it does not alter pixels outside the allowed mask. The U-Net base
+remains the stronger global reconstruction baseline on this paired RGB
+benchmark, while DDPM is useful as a constrained completion experiment.
 
 ## How It Works
 
@@ -115,8 +133,8 @@ sat_denoise_data/
 ```
 
 `data/`, `outputs/`, and model checkpoints are intentionally gitignored because
-they can be large. The selected images shown in this README are copied into
-`docs/assets/` so they render on GitHub.
+they can be large. The selected images shown in this README are copied from the
+actual output directories into `docs/assets/` so they render on GitHub.
 
 ## Setup
 
@@ -190,28 +208,28 @@ python -m src.evaluation.eval_unet_denoiser \
 
 ## Train A Masked-Completion DDPM
 
-The localized masked-completion configuration uses a frozen U-Net base,
+The hard masked-completion configuration uses a frozen U-Net base,
 conditions the DDPM on the degraded image, base restoration, degradation mask,
 and reliability map, then composes the final output only inside the mask.
 
 ```bash
 python -m src.training.train_ddpm_denoiser \
-  --config configs/train_ddpm_masked_completion_localized.yaml
+  --config configs/train_ddpm_masked_completion_hard.yaml
 ```
 
 Evaluate it:
 
 ```bash
 python -m src.evaluation.eval_ddpm_denoiser \
-  --ckpt outputs/ddpm_masked_completion_localized/ckpt_best.pt \
+  --ckpt outputs/ddpm_masked_completion_hard_10k/ckpt_best.pt \
   --base_ckpt outputs/unet_hard_50k_b6w8/ckpt_best.pt \
   --manifest data/manifests/patches_diverse.jsonl \
   --patch_dir data/patches_diverse \
-  --output_dir outputs/ddpm_masked_completion_localized_eval \
-  --max_samples 16 \
+  --output_dir outputs/ddpm_masked_completion_hard_10k_eval_ddim \
+  --max_samples 512 \
   --sampling_mode ddim \
   --sampling_steps 50 \
-  --num_samples_per_input 2
+  --num_samples_per_input 4
 ```
 
 ## Notes For Public Use
