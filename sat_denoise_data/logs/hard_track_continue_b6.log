@@ -1,0 +1,2323 @@
+===== EVAL HARD U-NET =====
+[eval] device=cuda  samples=2000  ckpt=outputs/unet_hard_50k_b6w8/ckpt_best.pt
+[eval] PSNR in/out: 24.94 / 32.21  (Δ=+7.26 dB)
+[eval] MAE  in/out: 0.0487 / 0.0207
+[eval] SSIM in/out: 0.6898 / 0.8948
+[eval] by degradation_type:
+  blur                         n= 67  PSNR 31.11->36.87  MAE 0.0170->0.0094  SSIM 0.8726->0.9553
+  blur_downsample_upsample     n=383  PSNR 30.01->33.10  MAE 0.0206->0.0155  SSIM 0.8202->0.8859
+  downsample_upsample          n= 86  PSNR 31.03->31.34  MAE 0.0181->0.0182  SSIM 0.8418->0.8564
+  gaussian_additive            n= 67  PSNR 18.97->32.99  MAE 0.0905->0.0170  SSIM 0.2140->0.8801
+  lowfreq_atmospheric_bias     n=346  PSNR 19.48->27.92  MAE 0.0848->0.0320  SSIM 0.8458->0.9783
+  mask_dropout                 n=123  PSNR 25.89->34.60  MAE 0.0162->0.0059  SSIM 0.9510->0.9692
+  mixed_structured             n=373  PSNR 20.67->25.79  MAE 0.0777->0.0396  SSIM 0.4705->0.7202
+  speckle_multiplicative       n=555  PSNR 26.56->37.52  MAE 0.0368->0.0100  SSIM 0.6038->0.9502
+[eval] wrote 500 grids and outputs/unet_hard_50k_b6w8_eval/metrics.json
+===== TRAIN HARD RESIDUAL DDPM =====
+[train-ddpm] degradation_profile=hard  types=['speckle_multiplicative', 'blur', 'downsample_upsample', 'blur_downsample_upsample', 'lowfreq_atmospheric_bias', 'mixed_structured', 'gaussian_additive', 'mask_dropout']
+[train-ddpm] residual mode: loaded frozen base U-Net (6,611,011 params) from outputs/unet_hard_50k_b6w8/ckpt_best.pt
+[train-ddpm] residual_scale=auto resolved to 0.07116 (method=std, samples=16, abs_mean=0.04394, std=0.07116, mad=0.03075, p95=0.14013)
+[train-ddpm] residual_clip=0.1000  residual_blend=0.250
+[train-ddpm] fixed val samples cached: 4 kinds=['lowfreq_atmospheric_bias', 'mixed_structured', 'speckle_multiplicative', 'speckle_multiplicative']
+[train-ddpm] device=cuda  mode=residual  cond_ch=6  params=2,331,171  train=9000  val=1000  T=1000
+[train-ddpm] ep0 step0 mse_eps=0.9998
+[train-ddpm] ep0 step20 mse_eps=0.9626
+[train-ddpm] ep0 step40 mse_eps=0.8708
+[train-ddpm] ep0 step60 mse_eps=0.8956
+[train-ddpm] ep0 step80 mse_eps=0.6933
+[train-ddpm] ep0 step100 mse_eps=0.6774
+[train-ddpm] ep0 step120 mse_eps=0.5246
+[train-ddpm] ep0 step140 mse_eps=0.4589
+[train-ddpm] ep0 step160 mse_eps=0.4048
+[train-ddpm] ep0 step180 mse_eps=0.3587
+[train-ddpm] ep0 step200 mse_eps=0.8427
+[train-ddpm] ep0 step220 mse_eps=0.5115
+[train-ddpm] ep0 step240 mse_eps=0.3265
+[train-ddpm] ep0 step260 mse_eps=0.2491
+[train-ddpm] ep0 step280 mse_eps=0.1901
+[train-ddpm] ep0 step300 mse_eps=0.2025
+[train-ddpm] ep0 step320 mse_eps=0.1590
+[train-ddpm] ep0 step340 mse_eps=0.1687
+[train-ddpm] ep0 step360 mse_eps=0.1568
+[train-ddpm] ep0 step380 mse_eps=0.1787
+[train-ddpm] ep0 step400 mse_eps=0.1199
+[train-ddpm] ep0 step420 mse_eps=0.3291
+[train-ddpm] ep0 step440 mse_eps=0.1100
+[train-ddpm] ep0 step460 mse_eps=0.1193
+[train-ddpm] ep0 step480 mse_eps=0.0965
+[train-ddpm] ep0 step500 mse_eps=0.1577
+[train-ddpm] ep0 step520 mse_eps=0.0986
+[train-ddpm] ep0 step540 mse_eps=0.0843
+[train-ddpm] ep0 step560 mse_eps=0.1113
+[train-ddpm] ep0 step580 mse_eps=0.1138
+[train-ddpm] ep0 step600 mse_eps=0.0762
+[train-ddpm] ep0 step620 mse_eps=0.2071
+[train-ddpm] ep0 step640 mse_eps=0.1776
+[train-ddpm] ep0 step660 mse_eps=0.2064
+[train-ddpm] ep0 step680 mse_eps=0.3645
+[train-ddpm] ep0 step700 mse_eps=0.0588
+[train-ddpm] ep0 step720 mse_eps=0.0955
+[train-ddpm] ep0 step740 mse_eps=0.3405
+[train-ddpm] ep0 step760 mse_eps=0.0841
+[train-ddpm] ep0 step780 mse_eps=0.1271
+[train-ddpm] ep0 step800 mse_eps=0.1234
+[train-ddpm] ep0 step820 mse_eps=0.1631
+[train-ddpm] ep0 step840 mse_eps=0.1662
+[train-ddpm] ep0 step860 mse_eps=0.0951
+[train-ddpm] ep0 step880 mse_eps=0.2907
+[train-ddpm] ep0 step900 mse_eps=0.1009
+[train-ddpm] ep0 step920 mse_eps=0.0540
+[train-ddpm] ep0 step940 mse_eps=0.0624
+[train-ddpm] ep0 step960 mse_eps=0.0425
+[train-ddpm] ep0 step980 mse_eps=0.0533
+[train-ddpm] ep0 step1000 mse_eps=0.1361
+[train-ddpm] ep0 step1020 mse_eps=0.5236
+[train-ddpm] ep0 step1040 mse_eps=0.1692
+[train-ddpm] ep0 step1060 mse_eps=0.3023
+[train-ddpm] ep0 step1080 mse_eps=0.1222
+[train-ddpm] ep0 step1100 mse_eps=0.2029
+[train-ddpm] ep0 step1120 mse_eps=0.3301
+[train-ddpm] ep0 step1140 mse_eps=0.0636
+[train-ddpm] ep0 step1160 mse_eps=0.2293
+[train-ddpm] ep0 step1180 mse_eps=0.3579
+[train-ddpm] ep0 step1200 mse_eps=0.1430
+[train-ddpm] ep0 step1220 mse_eps=0.1962
+[train-ddpm] ep0 step1240 mse_eps=0.1629
+[train-ddpm] ep0 step1260 mse_eps=0.0380
+[train-ddpm] ep0 step1280 mse_eps=0.1139
+[train-ddpm] ep0 step1300 mse_eps=0.0977
+[train-ddpm] ep0 step1320 mse_eps=0.2214
+[train-ddpm] ep0 step1340 mse_eps=0.0370
+[train-ddpm] ep0 step1360 mse_eps=0.0611
+[train-ddpm] ep0 step1380 mse_eps=0.1468
+[train-ddpm] ep0 step1400 mse_eps=0.0331
+[train-ddpm] ep0 step1420 mse_eps=0.6045
+[train-ddpm] ep0 step1440 mse_eps=0.1010
+[train-ddpm] ep0 step1460 mse_eps=0.0512
+[train-ddpm] ep0 step1480 mse_eps=0.0483
+[train-ddpm] ep0 step1500 mse_eps=0.7069
+[train-ddpm] ep0 step1520 mse_eps=0.1208
+[train-ddpm] ep0 step1540 mse_eps=0.0468
+[train-ddpm] ep0 step1560 mse_eps=0.1528
+[train-ddpm] ep0 step1580 mse_eps=0.1434
+[train-ddpm] ep0 step1600 mse_eps=0.0855
+[train-ddpm] ep0 step1620 mse_eps=0.0480
+[train-ddpm] ep0 step1640 mse_eps=0.0954
+[train-ddpm] ep0 step1660 mse_eps=0.2185
+[train-ddpm] ep0 step1680 mse_eps=0.0917
+[train-ddpm] ep0 step1700 mse_eps=0.1236
+[train-ddpm] ep0 step1720 mse_eps=0.0508
+[train-ddpm] ep0 step1740 mse_eps=0.0220
+[train-ddpm] ep0 step1760 mse_eps=0.1314
+[train-ddpm] ep0 step1780 mse_eps=0.1116
+[train-ddpm] ep0 step1800 mse_eps=0.5235
+[train-ddpm] ep0 step1820 mse_eps=0.1066
+[train-ddpm] ep0 step1840 mse_eps=0.1247
+[train-ddpm] ep0 step1860 mse_eps=0.1657
+[train-ddpm] ep0 step1880 mse_eps=0.0349
+[train-ddpm] ep0 step1900 mse_eps=0.0585
+[train-ddpm] ep0 step1920 mse_eps=0.1411
+[train-ddpm] ep0 step1940 mse_eps=0.0507
+[train-ddpm] ep0 step1960 mse_eps=0.2001
+[train-ddpm] ep0 step1980 mse_eps=0.1930
+[train-ddpm] ep0 step2000 mse_eps=0.0648
+[train-ddpm] ep0 step2020 mse_eps=0.2891
+[train-ddpm] ep0 step2040 mse_eps=0.1204
+[train-ddpm] ep0 step2060 mse_eps=0.1460
+[train-ddpm] ep0 step2080 mse_eps=0.1298
+[train-ddpm] ep0 step2100 mse_eps=0.0423
+[train-ddpm] ep0 step2120 mse_eps=0.2459
+[train-ddpm] ep0 step2140 mse_eps=0.0185
+[train-ddpm] ep0 step2160 mse_eps=0.6046
+[train-ddpm] ep0 step2180 mse_eps=0.1996
+[train-ddpm] ep0 step2200 mse_eps=0.0435
+[train-ddpm] ep0 step2220 mse_eps=0.0337
+[train-ddpm] ep0 step2240 mse_eps=0.0518
+[train-ddpm] ep0 step2260 mse_eps=0.1027
+[train-ddpm] ep0 step2280 mse_eps=0.1115
+[train-ddpm] ep0 step2300 mse_eps=0.1153
+[train-ddpm] ep0 step2320 mse_eps=0.1094
+[train-ddpm] ep0 step2340 mse_eps=0.0665
+[train-ddpm] ep0 step2360 mse_eps=0.1538
+[train-ddpm] ep0 step2380 mse_eps=0.0271
+[train-ddpm] ep0 step2400 mse_eps=0.2719
+[train-ddpm] ep0 step2420 mse_eps=0.3139
+[train-ddpm] ep0 step2440 mse_eps=0.1544
+[train-ddpm] ep0 step2460 mse_eps=0.2190
+[train-ddpm] ep0 step2480 mse_eps=0.0510
+[train-ddpm] ep0 step2500 mse_eps=0.0332
+[train-ddpm] ep0 step2520 mse_eps=0.0916
+[train-ddpm] ep0 step2540 mse_eps=0.0270
+[train-ddpm] ep0 step2560 mse_eps=0.0448
+[train-ddpm] ep0 step2580 mse_eps=0.0881
+[train-ddpm] ep0 step2600 mse_eps=0.0386
+[train-ddpm] ep0 step2620 mse_eps=0.2626
+[train-ddpm] ep0 step2640 mse_eps=0.2683
+[train-ddpm] ep0 step2660 mse_eps=0.0989
+[train-ddpm] ep0 step2680 mse_eps=0.1175
+[train-ddpm] ep0 step2700 mse_eps=0.0184
+[train-ddpm] ep0 step2720 mse_eps=0.0952
+[train-ddpm] ep0 step2740 mse_eps=0.2476
+[train-ddpm] ep0 step2760 mse_eps=0.4803
+[train-ddpm] ep0 step2780 mse_eps=0.0436
+[train-ddpm] ep0 step2800 mse_eps=0.1635
+[train-ddpm] ep0 step2820 mse_eps=0.1406
+[train-ddpm] ep0 step2840 mse_eps=0.0243
+[train-ddpm] ep0 step2860 mse_eps=0.7838
+[train-ddpm] ep0 step2880 mse_eps=0.1064
+[train-ddpm] ep0 step2900 mse_eps=0.1088
+[train-ddpm] ep0 step2920 mse_eps=0.1765
+[train-ddpm] ep0 step2940 mse_eps=0.0259
+[train-ddpm] ep0 step2960 mse_eps=0.3824
+[train-ddpm] ep0 step2980 mse_eps=0.1152
+[train-ddpm] ep0 step3000 mse_eps=0.0419
+[train-ddpm] ep0 step3020 mse_eps=0.0197
+[train-ddpm] ep0 step3040 mse_eps=0.0489
+[train-ddpm] ep0 step3060 mse_eps=0.5712
+[train-ddpm] ep0 step3080 mse_eps=0.0262
+[train-ddpm] ep0 step3100 mse_eps=0.0321
+[train-ddpm] ep0 step3120 mse_eps=0.0179
+[train-ddpm] ep0 step3140 mse_eps=0.1279
+[train-ddpm] ep0 step3160 mse_eps=0.1437
+[train-ddpm] ep0 step3180 mse_eps=0.0967
+[train-ddpm] ep0 step3200 mse_eps=0.1319
+[train-ddpm] ep0 step3220 mse_eps=0.1649
+[train-ddpm] ep0 step3240 mse_eps=0.0239
+[train-ddpm] ep0 step3260 mse_eps=0.0606
+[train-ddpm] ep0 step3280 mse_eps=0.0199
+[train-ddpm] ep0 step3300 mse_eps=0.1644
+[train-ddpm] ep0 step3320 mse_eps=0.0821
+[train-ddpm] ep0 step3340 mse_eps=0.0143
+[train-ddpm] ep0 step3360 mse_eps=0.5029
+[train-ddpm] ep0 step3380 mse_eps=0.1570
+[train-ddpm] ep0 step3400 mse_eps=0.0422
+[train-ddpm] ep0 step3420 mse_eps=0.0648
+[train-ddpm] ep0 step3440 mse_eps=0.1871
+[train-ddpm] ep0 step3460 mse_eps=0.1411
+[train-ddpm] ep0 step3480 mse_eps=0.1338
+[train-ddpm] ep0 step3500 mse_eps=0.0315
+[train-ddpm] ep0 step3520 mse_eps=0.3157
+[train-ddpm] ep0 step3540 mse_eps=0.0460
+[train-ddpm] ep0 step3560 mse_eps=0.0336
+[train-ddpm] ep0 step3580 mse_eps=0.1673
+[train-ddpm] ep0 step3600 mse_eps=0.0161
+[train-ddpm] ep0 step3620 mse_eps=0.0877
+[train-ddpm] ep0 step3640 mse_eps=0.0175
+[train-ddpm] ep0 step3660 mse_eps=0.0228
+[train-ddpm] ep0 step3680 mse_eps=0.4312
+[train-ddpm] ep0 step3700 mse_eps=0.0324
+[train-ddpm] ep0 step3720 mse_eps=0.0840
+[train-ddpm] ep0 step3740 mse_eps=0.0205
+[train-ddpm] ep0 step3760 mse_eps=0.0361
+[train-ddpm] ep0 step3780 mse_eps=0.0971
+[train-ddpm] ep0 step3800 mse_eps=0.3127
+[train-ddpm] ep0 step3820 mse_eps=0.4052
+[train-ddpm] ep0 step3840 mse_eps=0.0472
+[train-ddpm] ep0 step3860 mse_eps=0.0709
+[train-ddpm] ep0 step3880 mse_eps=0.2307
+[train-ddpm] ep0 step3900 mse_eps=0.1070
+[train-ddpm] ep0 step3920 mse_eps=0.0382
+[train-ddpm] ep0 step3940 mse_eps=0.1139
+[train-ddpm] ep0 step3960 mse_eps=0.6065
+[train-ddpm] ep0 step3980 mse_eps=0.0341
+[train-ddpm] ep0 step4000 mse_eps=0.1004
+[train-ddpm] ep0 step4020 mse_eps=0.1317
+[train-ddpm] ep0 step4040 mse_eps=0.0165
+[train-ddpm] ep0 step4060 mse_eps=0.4298
+[train-ddpm] ep0 step4080 mse_eps=0.5657
+[train-ddpm] ep0 step4100 mse_eps=0.4918
+[train-ddpm] ep0 step4120 mse_eps=0.1429
+[train-ddpm] ep0 step4140 mse_eps=0.0898
+[train-ddpm] ep0 step4160 mse_eps=0.1085
+[train-ddpm] ep0 step4180 mse_eps=0.0384
+[train-ddpm] ep0 step4200 mse_eps=0.1801
+[train-ddpm] ep0 step4220 mse_eps=0.1080
+[train-ddpm] ep0 step4240 mse_eps=0.0752
+[train-ddpm] ep0 step4260 mse_eps=0.0341
+[train-ddpm] ep0 step4280 mse_eps=0.1176
+[train-ddpm] ep0 step4300 mse_eps=0.0226
+[train-ddpm] ep0 step4320 mse_eps=0.0161
+[train-ddpm] ep0 step4340 mse_eps=0.1250
+[train-ddpm] ep0 step4360 mse_eps=0.1179
+[train-ddpm] ep0 step4380 mse_eps=0.0363
+[train-ddpm] ep0 step4400 mse_eps=0.3726
+[train-ddpm] ep0 step4420 mse_eps=0.0119
+[train-ddpm] ep0 step4440 mse_eps=0.1350
+[train-ddpm] ep0 step4460 mse_eps=0.1923
+[train-ddpm] ep0 step4480 mse_eps=0.1569
+[val-ddpm] ep0 loss=0.1515  x0_l1=5.2169  res_target_l1=0.0442  res_x0_l1=0.3712  final_from_x0_psnr=31.69dB
+[train-ddpm] saved epoch sample grid (sampling took 2.4s)
+[val-ddpm] new best loss=0.1515
+[train-ddpm] ep1 step4500 mse_eps=0.2476
+[train-ddpm] ep1 step4520 mse_eps=0.3844
+[train-ddpm] ep1 step4540 mse_eps=0.0907
+[train-ddpm] ep1 step4560 mse_eps=0.1034
+[train-ddpm] ep1 step4580 mse_eps=0.0478
+[train-ddpm] ep1 step4600 mse_eps=0.0690
+[train-ddpm] ep1 step4620 mse_eps=0.0754
+[train-ddpm] ep1 step4640 mse_eps=0.3347
+[train-ddpm] ep1 step4660 mse_eps=0.1725
+[train-ddpm] ep1 step4680 mse_eps=0.1136
+[train-ddpm] ep1 step4700 mse_eps=0.0124
+[train-ddpm] ep1 step4720 mse_eps=0.0812
+[train-ddpm] ep1 step4740 mse_eps=0.2502
+[train-ddpm] ep1 step4760 mse_eps=0.2817
+[train-ddpm] ep1 step4780 mse_eps=0.0943
+[train-ddpm] ep1 step4800 mse_eps=0.0565
+[train-ddpm] ep1 step4820 mse_eps=0.0572
+[train-ddpm] ep1 step4840 mse_eps=0.1889
+[train-ddpm] ep1 step4860 mse_eps=0.4191
+[train-ddpm] ep1 step4880 mse_eps=0.0344
+[train-ddpm] ep1 step4900 mse_eps=0.2501
+[train-ddpm] ep1 step4920 mse_eps=0.0445
+[train-ddpm] ep1 step4940 mse_eps=0.1316
+[train-ddpm] ep1 step4960 mse_eps=0.0130
+[train-ddpm] ep1 step4980 mse_eps=0.2062
+[train-ddpm] ep1 step5000 mse_eps=0.0573
+[train-ddpm] ep1 step5020 mse_eps=0.5110
+[train-ddpm] ep1 step5040 mse_eps=0.2340
+[train-ddpm] ep1 step5060 mse_eps=0.2739
+[train-ddpm] ep1 step5080 mse_eps=0.1448
+[train-ddpm] ep1 step5100 mse_eps=0.0222
+[train-ddpm] ep1 step5120 mse_eps=0.0955
+[train-ddpm] ep1 step5140 mse_eps=0.0526
+[train-ddpm] ep1 step5160 mse_eps=0.0203
+[train-ddpm] ep1 step5180 mse_eps=0.1488
+[train-ddpm] ep1 step5200 mse_eps=0.1645
+[train-ddpm] ep1 step5220 mse_eps=0.2653
+[train-ddpm] ep1 step5240 mse_eps=0.1383
+[train-ddpm] ep1 step5260 mse_eps=0.1150
+[train-ddpm] ep1 step5280 mse_eps=0.0182
+[train-ddpm] ep1 step5300 mse_eps=0.3566
+[train-ddpm] ep1 step5320 mse_eps=0.0687
+[train-ddpm] ep1 step5340 mse_eps=0.0364
+[train-ddpm] ep1 step5360 mse_eps=0.0675
+[train-ddpm] ep1 step5380 mse_eps=0.2054
+[train-ddpm] ep1 step5400 mse_eps=0.3636
+[train-ddpm] ep1 step5420 mse_eps=0.0240
+[train-ddpm] ep1 step5440 mse_eps=0.0680
+[train-ddpm] ep1 step5460 mse_eps=0.1066
+[train-ddpm] ep1 step5480 mse_eps=0.1330
+[train-ddpm] ep1 step5500 mse_eps=0.0299
+[train-ddpm] ep1 step5520 mse_eps=0.0199
+[train-ddpm] ep1 step5540 mse_eps=0.0770
+[train-ddpm] ep1 step5560 mse_eps=0.0680
+[train-ddpm] ep1 step5580 mse_eps=0.1474
+[train-ddpm] ep1 step5600 mse_eps=0.0624
+[train-ddpm] ep1 step5620 mse_eps=0.3745
+[train-ddpm] ep1 step5640 mse_eps=0.4103
+[train-ddpm] ep1 step5660 mse_eps=0.0289
+[train-ddpm] ep1 step5680 mse_eps=0.1288
+[train-ddpm] ep1 step5700 mse_eps=0.1598
+[train-ddpm] ep1 step5720 mse_eps=0.0149
+[train-ddpm] ep1 step5740 mse_eps=0.3166
+[train-ddpm] ep1 step5760 mse_eps=0.1285
+[train-ddpm] ep1 step5780 mse_eps=0.0733
+[train-ddpm] ep1 step5800 mse_eps=0.0697
+[train-ddpm] ep1 step5820 mse_eps=0.6659
+[train-ddpm] ep1 step5840 mse_eps=0.1060
+[train-ddpm] ep1 step5860 mse_eps=0.0621
+[train-ddpm] ep1 step5880 mse_eps=0.1306
+[train-ddpm] ep1 step5900 mse_eps=0.1360
+[train-ddpm] ep1 step5920 mse_eps=0.0537
+[train-ddpm] ep1 step5940 mse_eps=0.0110
+[train-ddpm] ep1 step5960 mse_eps=0.1369
+[train-ddpm] ep1 step5980 mse_eps=0.0426
+[train-ddpm] ep1 step6000 mse_eps=0.0231
+[train-ddpm] ep1 step6020 mse_eps=0.1534
+[train-ddpm] ep1 step6040 mse_eps=0.0227
+[train-ddpm] ep1 step6060 mse_eps=0.0177
+[train-ddpm] ep1 step6080 mse_eps=0.0972
+[train-ddpm] ep1 step6100 mse_eps=0.1723
+[train-ddpm] ep1 step6120 mse_eps=0.0179
+[train-ddpm] ep1 step6140 mse_eps=0.0365
+[train-ddpm] ep1 step6160 mse_eps=0.0672
+[train-ddpm] ep1 step6180 mse_eps=0.0142
+[train-ddpm] ep1 step6200 mse_eps=0.1565
+[train-ddpm] ep1 step6220 mse_eps=0.0078
+[train-ddpm] ep1 step6240 mse_eps=0.1493
+[train-ddpm] ep1 step6260 mse_eps=0.1064
+[train-ddpm] ep1 step6280 mse_eps=0.1037
+[train-ddpm] ep1 step6300 mse_eps=0.1834
+[train-ddpm] ep1 step6320 mse_eps=0.1577
+[train-ddpm] ep1 step6340 mse_eps=0.1295
+[train-ddpm] ep1 step6360 mse_eps=0.0564
+[train-ddpm] ep1 step6380 mse_eps=0.1113
+[train-ddpm] ep1 step6400 mse_eps=0.0627
+[train-ddpm] ep1 step6420 mse_eps=0.0286
+[train-ddpm] ep1 step6440 mse_eps=0.0785
+[train-ddpm] ep1 step6460 mse_eps=0.2066
+[train-ddpm] ep1 step6480 mse_eps=0.0960
+[train-ddpm] ep1 step6500 mse_eps=0.0565
+[train-ddpm] ep1 step6520 mse_eps=0.1494
+[train-ddpm] ep1 step6540 mse_eps=0.0995
+[train-ddpm] ep1 step6560 mse_eps=0.0314
+[train-ddpm] ep1 step6580 mse_eps=0.0165
+[train-ddpm] ep1 step6600 mse_eps=0.0467
+[train-ddpm] ep1 step6620 mse_eps=0.4018
+[train-ddpm] ep1 step6640 mse_eps=0.2723
+[train-ddpm] ep1 step6660 mse_eps=0.2184
+[train-ddpm] ep1 step6680 mse_eps=0.0309
+[train-ddpm] ep1 step6700 mse_eps=0.1174
+[train-ddpm] ep1 step6720 mse_eps=0.4859
+[train-ddpm] ep1 step6740 mse_eps=0.3035
+[train-ddpm] ep1 step6760 mse_eps=0.0168
+[train-ddpm] ep1 step6780 mse_eps=0.0872
+[train-ddpm] ep1 step6800 mse_eps=0.0582
+[train-ddpm] ep1 step6820 mse_eps=0.4730
+[train-ddpm] ep1 step6840 mse_eps=0.0649
+[train-ddpm] ep1 step6860 mse_eps=0.1068
+[train-ddpm] ep1 step6880 mse_eps=0.0198
+[train-ddpm] ep1 step6900 mse_eps=0.1365
+[train-ddpm] ep1 step6920 mse_eps=0.0944
+[train-ddpm] ep1 step6940 mse_eps=0.1138
+[train-ddpm] ep1 step6960 mse_eps=0.0828
+[train-ddpm] ep1 step6980 mse_eps=0.1789
+[train-ddpm] ep1 step7000 mse_eps=0.1138
+[train-ddpm] ep1 step7020 mse_eps=0.1866
+[train-ddpm] ep1 step7040 mse_eps=0.1419
+[train-ddpm] ep1 step7060 mse_eps=0.0424
+[train-ddpm] ep1 step7080 mse_eps=0.0906
+[train-ddpm] ep1 step7100 mse_eps=0.1368
+[train-ddpm] ep1 step7120 mse_eps=0.1145
+[train-ddpm] ep1 step7140 mse_eps=0.2218
+[train-ddpm] ep1 step7160 mse_eps=0.0328
+[train-ddpm] ep1 step7180 mse_eps=0.0381
+[train-ddpm] ep1 step7200 mse_eps=0.1036
+[train-ddpm] ep1 step7220 mse_eps=0.0950
+[train-ddpm] ep1 step7240 mse_eps=0.2094
+[train-ddpm] ep1 step7260 mse_eps=0.0770
+[train-ddpm] ep1 step7280 mse_eps=0.1065
+[train-ddpm] ep1 step7300 mse_eps=0.0558
+[train-ddpm] ep1 step7320 mse_eps=0.1652
+[train-ddpm] ep1 step7340 mse_eps=0.0361
+[train-ddpm] ep1 step7360 mse_eps=0.0351
+[train-ddpm] ep1 step7380 mse_eps=0.3897
+[train-ddpm] ep1 step7400 mse_eps=0.1551
+[train-ddpm] ep1 step7420 mse_eps=0.0278
+[train-ddpm] ep1 step7440 mse_eps=0.1718
+[train-ddpm] ep1 step7460 mse_eps=0.0890
+[train-ddpm] ep1 step7480 mse_eps=0.2423
+[train-ddpm] ep1 step7500 mse_eps=0.0502
+[train-ddpm] ep1 step7520 mse_eps=0.2283
+[train-ddpm] ep1 step7540 mse_eps=0.0134
+[train-ddpm] ep1 step7560 mse_eps=0.0631
+[train-ddpm] ep1 step7580 mse_eps=0.0455
+[train-ddpm] ep1 step7600 mse_eps=0.0551
+[train-ddpm] ep1 step7620 mse_eps=0.2674
+[train-ddpm] ep1 step7640 mse_eps=0.0405
+[train-ddpm] ep1 step7660 mse_eps=0.5524
+[train-ddpm] ep1 step7680 mse_eps=0.0912
+[train-ddpm] ep1 step7700 mse_eps=0.5611
+[train-ddpm] ep1 step7720 mse_eps=0.0592
+[train-ddpm] ep1 step7740 mse_eps=0.1057
+[train-ddpm] ep1 step7760 mse_eps=0.0340
+[train-ddpm] ep1 step7780 mse_eps=0.1308
+[train-ddpm] ep1 step7800 mse_eps=0.2471
+[train-ddpm] ep1 step7820 mse_eps=0.0765
+[train-ddpm] ep1 step7840 mse_eps=0.0195
+[train-ddpm] ep1 step7860 mse_eps=0.1333
+[train-ddpm] ep1 step7880 mse_eps=0.1832
+[train-ddpm] ep1 step7900 mse_eps=0.0503
+[train-ddpm] ep1 step7920 mse_eps=0.1205
+[train-ddpm] ep1 step7940 mse_eps=0.1799
+[train-ddpm] ep1 step7960 mse_eps=0.0219
+[train-ddpm] ep1 step7980 mse_eps=0.2364
+[train-ddpm] ep1 step8000 mse_eps=0.2469
+[train-ddpm] ep1 step8020 mse_eps=0.0801
+[train-ddpm] ep1 step8040 mse_eps=0.0163
+[train-ddpm] ep1 step8060 mse_eps=0.2126
+[train-ddpm] ep1 step8080 mse_eps=0.0239
+[train-ddpm] ep1 step8100 mse_eps=0.0843
+[train-ddpm] ep1 step8120 mse_eps=0.5588
+[train-ddpm] ep1 step8140 mse_eps=0.3782
+[train-ddpm] ep1 step8160 mse_eps=0.5222
+[train-ddpm] ep1 step8180 mse_eps=0.2441
+[train-ddpm] ep1 step8200 mse_eps=0.2743
+[train-ddpm] ep1 step8220 mse_eps=0.0328
+[train-ddpm] ep1 step8240 mse_eps=0.0488
+[train-ddpm] ep1 step8260 mse_eps=0.0181
+[train-ddpm] ep1 step8280 mse_eps=0.0874
+[train-ddpm] ep1 step8300 mse_eps=0.1254
+[train-ddpm] ep1 step8320 mse_eps=0.0771
+[train-ddpm] ep1 step8340 mse_eps=0.5127
+[train-ddpm] ep1 step8360 mse_eps=0.0934
+[train-ddpm] ep1 step8380 mse_eps=0.0395
+[train-ddpm] ep1 step8400 mse_eps=0.2694
+[train-ddpm] ep1 step8420 mse_eps=0.1788
+[train-ddpm] ep1 step8440 mse_eps=0.0316
+[train-ddpm] ep1 step8460 mse_eps=0.0706
+[train-ddpm] ep1 step8480 mse_eps=0.1338
+[train-ddpm] ep1 step8500 mse_eps=0.0729
+[train-ddpm] ep1 step8520 mse_eps=0.0263
+[train-ddpm] ep1 step8540 mse_eps=0.1702
+[train-ddpm] ep1 step8560 mse_eps=0.0428
+[train-ddpm] ep1 step8580 mse_eps=0.0803
+[train-ddpm] ep1 step8600 mse_eps=0.0351
+[train-ddpm] ep1 step8620 mse_eps=0.1623
+[train-ddpm] ep1 step8640 mse_eps=0.0427
+[train-ddpm] ep1 step8660 mse_eps=0.0185
+[train-ddpm] ep1 step8680 mse_eps=0.1661
+[train-ddpm] ep1 step8700 mse_eps=0.4226
+[train-ddpm] ep1 step8720 mse_eps=0.0414
+[train-ddpm] ep1 step8740 mse_eps=0.0463
+[train-ddpm] ep1 step8760 mse_eps=0.0700
+[train-ddpm] ep1 step8780 mse_eps=0.0600
+[train-ddpm] ep1 step8800 mse_eps=0.1722
+[train-ddpm] ep1 step8820 mse_eps=0.1070
+[train-ddpm] ep1 step8840 mse_eps=0.0653
+[train-ddpm] ep1 step8860 mse_eps=0.0916
+[train-ddpm] ep1 step8880 mse_eps=0.0610
+[train-ddpm] ep1 step8900 mse_eps=0.0242
+[train-ddpm] ep1 step8920 mse_eps=0.0905
+[train-ddpm] ep1 step8940 mse_eps=0.1901
+[train-ddpm] ep1 step8960 mse_eps=0.0876
+[train-ddpm] ep1 step8980 mse_eps=0.1142
+[val-ddpm] ep1 loss=0.1350  x0_l1=0.4474  res_target_l1=0.0432  res_x0_l1=0.0318  final_from_x0_psnr=31.77dB
+[train-ddpm] saved epoch sample grid (sampling took 2.5s)
+[val-ddpm] new best loss=0.1350
+[train-ddpm] ep2 step9000 mse_eps=0.0824
+[train-ddpm] ep2 step9020 mse_eps=0.0745
+[train-ddpm] ep2 step9040 mse_eps=0.1872
+[train-ddpm] ep2 step9060 mse_eps=0.3404
+[train-ddpm] ep2 step9080 mse_eps=0.0214
+[train-ddpm] ep2 step9100 mse_eps=0.1410
+[train-ddpm] ep2 step9120 mse_eps=0.1362
+[train-ddpm] ep2 step9140 mse_eps=0.1343
+[train-ddpm] ep2 step9160 mse_eps=0.1539
+[train-ddpm] ep2 step9180 mse_eps=0.4051
+[train-ddpm] ep2 step9200 mse_eps=0.6015
+[train-ddpm] ep2 step9220 mse_eps=0.0670
+[train-ddpm] ep2 step9240 mse_eps=0.0126
+[train-ddpm] ep2 step9260 mse_eps=0.1378
+[train-ddpm] ep2 step9280 mse_eps=0.1803
+[train-ddpm] ep2 step9300 mse_eps=0.1930
+[train-ddpm] ep2 step9320 mse_eps=0.4424
+[train-ddpm] ep2 step9340 mse_eps=0.1546
+[train-ddpm] ep2 step9360 mse_eps=0.1886
+[train-ddpm] ep2 step9380 mse_eps=0.1182
+[train-ddpm] ep2 step9400 mse_eps=0.2626
+[train-ddpm] ep2 step9420 mse_eps=0.1482
+[train-ddpm] ep2 step9440 mse_eps=0.3433
+[train-ddpm] ep2 step9460 mse_eps=0.3903
+[train-ddpm] ep2 step9480 mse_eps=0.0096
+[train-ddpm] ep2 step9500 mse_eps=0.0242
+[train-ddpm] ep2 step9520 mse_eps=0.3490
+[train-ddpm] ep2 step9540 mse_eps=0.1073
+[train-ddpm] ep2 step9560 mse_eps=0.1143
+[train-ddpm] ep2 step9580 mse_eps=0.1607
+[train-ddpm] ep2 step9600 mse_eps=0.0880
+[train-ddpm] ep2 step9620 mse_eps=0.0881
+[train-ddpm] ep2 step9640 mse_eps=0.0819
+[train-ddpm] ep2 step9660 mse_eps=0.0307
+[train-ddpm] ep2 step9680 mse_eps=0.3034
+[train-ddpm] ep2 step9700 mse_eps=0.0386
+[train-ddpm] ep2 step9720 mse_eps=0.1150
+[train-ddpm] ep2 step9740 mse_eps=0.0090
+[train-ddpm] ep2 step9760 mse_eps=0.6619
+[train-ddpm] ep2 step9780 mse_eps=0.3016
+[train-ddpm] ep2 step9800 mse_eps=0.0656
+[train-ddpm] ep2 step9820 mse_eps=0.0301
+[train-ddpm] ep2 step9840 mse_eps=0.1131
+[train-ddpm] ep2 step9860 mse_eps=0.2041
+[train-ddpm] ep2 step9880 mse_eps=0.0719
+[train-ddpm] ep2 step9900 mse_eps=0.3268
+[train-ddpm] ep2 step9920 mse_eps=0.0233
+[train-ddpm] ep2 step9940 mse_eps=0.0589
+[train-ddpm] ep2 step9960 mse_eps=0.3155
+[train-ddpm] ep2 step9980 mse_eps=0.1073
+[train-ddpm] ep2 step10000 mse_eps=0.1184
+[train-ddpm] ep2 step10020 mse_eps=0.4807
+[train-ddpm] ep2 step10040 mse_eps=0.2683
+[train-ddpm] ep2 step10060 mse_eps=0.0737
+[train-ddpm] ep2 step10080 mse_eps=0.1360
+[train-ddpm] ep2 step10100 mse_eps=0.0697
+[train-ddpm] ep2 step10120 mse_eps=0.0107
+[train-ddpm] ep2 step10140 mse_eps=0.1562
+[train-ddpm] ep2 step10160 mse_eps=0.1007
+[train-ddpm] ep2 step10180 mse_eps=0.3041
+[train-ddpm] ep2 step10200 mse_eps=0.1363
+[train-ddpm] ep2 step10220 mse_eps=0.1167
+[train-ddpm] ep2 step10240 mse_eps=0.1768
+[train-ddpm] ep2 step10260 mse_eps=0.0185
+[train-ddpm] ep2 step10280 mse_eps=0.0585
+[train-ddpm] ep2 step10300 mse_eps=0.2228
+[train-ddpm] ep2 step10320 mse_eps=0.3903
+[train-ddpm] ep2 step10340 mse_eps=0.2293
+[train-ddpm] ep2 step10360 mse_eps=0.0402
+[train-ddpm] ep2 step10380 mse_eps=0.0859
+[train-ddpm] ep2 step10400 mse_eps=0.0062
+[train-ddpm] ep2 step10420 mse_eps=0.0816
+[train-ddpm] ep2 step10440 mse_eps=0.0377
+[train-ddpm] ep2 step10460 mse_eps=0.2355
+[train-ddpm] ep2 step10480 mse_eps=0.0744
+[train-ddpm] ep2 step10500 mse_eps=0.2427
+[train-ddpm] ep2 step10520 mse_eps=0.2265
+[train-ddpm] ep2 step10540 mse_eps=0.3933
+[train-ddpm] ep2 step10560 mse_eps=0.1325
+[train-ddpm] ep2 step10580 mse_eps=0.1084
+[train-ddpm] ep2 step10600 mse_eps=0.1047
+[train-ddpm] ep2 step10620 mse_eps=0.0389
+[train-ddpm] ep2 step10640 mse_eps=0.1802
+[train-ddpm] ep2 step10660 mse_eps=0.1019
+[train-ddpm] ep2 step10680 mse_eps=0.1424
+[train-ddpm] ep2 step10700 mse_eps=0.0332
+[train-ddpm] ep2 step10720 mse_eps=0.0361
+[train-ddpm] ep2 step10740 mse_eps=0.1482
+[train-ddpm] ep2 step10760 mse_eps=0.1172
+[train-ddpm] ep2 step10780 mse_eps=0.0341
+[train-ddpm] ep2 step10800 mse_eps=0.1635
+[train-ddpm] ep2 step10820 mse_eps=0.1615
+[train-ddpm] ep2 step10840 mse_eps=0.1028
+[train-ddpm] ep2 step10860 mse_eps=0.1666
+[train-ddpm] ep2 step10880 mse_eps=0.1231
+[train-ddpm] ep2 step10900 mse_eps=0.1695
+[train-ddpm] ep2 step10920 mse_eps=0.0803
+[train-ddpm] ep2 step10940 mse_eps=0.0522
+[train-ddpm] ep2 step10960 mse_eps=0.0910
+[train-ddpm] ep2 step10980 mse_eps=0.1341
+[train-ddpm] ep2 step11000 mse_eps=0.0291
+[train-ddpm] ep2 step11020 mse_eps=0.0960
+[train-ddpm] ep2 step11040 mse_eps=0.1164
+[train-ddpm] ep2 step11060 mse_eps=0.0099
+[train-ddpm] ep2 step11080 mse_eps=0.0293
+[train-ddpm] ep2 step11100 mse_eps=0.0881
+[train-ddpm] ep2 step11120 mse_eps=0.2525
+[train-ddpm] ep2 step11140 mse_eps=0.1467
+[train-ddpm] ep2 step11160 mse_eps=0.0523
+[train-ddpm] ep2 step11180 mse_eps=0.0610
+[train-ddpm] ep2 step11200 mse_eps=0.0576
+[train-ddpm] ep2 step11220 mse_eps=0.0291
+[train-ddpm] ep2 step11240 mse_eps=0.0393
+[train-ddpm] ep2 step11260 mse_eps=0.0726
+[train-ddpm] ep2 step11280 mse_eps=0.1633
+[train-ddpm] ep2 step11300 mse_eps=0.0715
+[train-ddpm] ep2 step11320 mse_eps=0.0590
+[train-ddpm] ep2 step11340 mse_eps=0.1121
+[train-ddpm] ep2 step11360 mse_eps=0.0464
+[train-ddpm] ep2 step11380 mse_eps=0.1222
+[train-ddpm] ep2 step11400 mse_eps=0.0158
+[train-ddpm] ep2 step11420 mse_eps=0.0090
+[train-ddpm] ep2 step11440 mse_eps=0.4706
+[train-ddpm] ep2 step11460 mse_eps=0.1385
+[train-ddpm] ep2 step11480 mse_eps=0.1316
+[train-ddpm] ep2 step11500 mse_eps=0.2132
+[train-ddpm] ep2 step11520 mse_eps=0.3160
+[train-ddpm] ep2 step11540 mse_eps=0.1329
+[train-ddpm] ep2 step11560 mse_eps=0.0516
+[train-ddpm] ep2 step11580 mse_eps=0.0426
+[train-ddpm] ep2 step11600 mse_eps=0.1917
+[train-ddpm] ep2 step11620 mse_eps=0.2247
+[train-ddpm] ep2 step11640 mse_eps=0.3512
+[train-ddpm] ep2 step11660 mse_eps=0.1342
+[train-ddpm] ep2 step11680 mse_eps=0.0481
+[train-ddpm] ep2 step11700 mse_eps=0.0554
+[train-ddpm] ep2 step11720 mse_eps=0.0514
+[train-ddpm] ep2 step11740 mse_eps=0.0083
+[train-ddpm] ep2 step11760 mse_eps=0.0151
+[train-ddpm] ep2 step11780 mse_eps=0.0331
+[train-ddpm] ep2 step11800 mse_eps=0.0728
+[train-ddpm] ep2 step11820 mse_eps=0.0663
+[train-ddpm] ep2 step11840 mse_eps=0.1865
+[train-ddpm] ep2 step11860 mse_eps=0.0836
+[train-ddpm] ep2 step11880 mse_eps=0.0469
+[train-ddpm] ep2 step11900 mse_eps=0.0246
+[train-ddpm] ep2 step11920 mse_eps=0.0076
+[train-ddpm] ep2 step11940 mse_eps=0.0487
+[train-ddpm] ep2 step11960 mse_eps=0.0202
+[train-ddpm] ep2 step11980 mse_eps=0.0111
+[train-ddpm] ep2 step12000 mse_eps=0.0594
+[train-ddpm] ep2 step12020 mse_eps=0.1296
+[train-ddpm] ep2 step12040 mse_eps=0.1430
+[train-ddpm] ep2 step12060 mse_eps=0.1466
+[train-ddpm] ep2 step12080 mse_eps=0.0385
+[train-ddpm] ep2 step12100 mse_eps=0.0703
+[train-ddpm] ep2 step12120 mse_eps=0.0870
+[train-ddpm] ep2 step12140 mse_eps=0.0725
+[train-ddpm] ep2 step12160 mse_eps=0.0530
+[train-ddpm] ep2 step12180 mse_eps=0.2162
+[train-ddpm] ep2 step12200 mse_eps=0.2989
+[train-ddpm] ep2 step12220 mse_eps=0.0070
+[train-ddpm] ep2 step12240 mse_eps=0.1081
+[train-ddpm] ep2 step12260 mse_eps=0.0201
+[train-ddpm] ep2 step12280 mse_eps=0.0100
+[train-ddpm] ep2 step12300 mse_eps=0.0696
+[train-ddpm] ep2 step12320 mse_eps=0.0862
+[train-ddpm] ep2 step12340 mse_eps=0.0645
+[train-ddpm] ep2 step12360 mse_eps=0.2488
+[train-ddpm] ep2 step12380 mse_eps=0.0173
+[train-ddpm] ep2 step12400 mse_eps=0.0565
+[train-ddpm] ep2 step12420 mse_eps=0.2883
+[train-ddpm] ep2 step12440 mse_eps=0.0381
+[train-ddpm] ep2 step12460 mse_eps=0.9750
+[train-ddpm] ep2 step12480 mse_eps=0.1974
+[train-ddpm] ep2 step12500 mse_eps=0.0659
+[train-ddpm] ep2 step12520 mse_eps=0.0777
+[train-ddpm] ep2 step12540 mse_eps=0.2180
+[train-ddpm] ep2 step12560 mse_eps=0.0348
+[train-ddpm] ep2 step12580 mse_eps=0.0708
+[train-ddpm] ep2 step12600 mse_eps=0.0052
+[train-ddpm] ep2 step12620 mse_eps=0.0932
+[train-ddpm] ep2 step12640 mse_eps=0.5124
+[train-ddpm] ep2 step12660 mse_eps=0.1177
+[train-ddpm] ep2 step12680 mse_eps=0.2187
+[train-ddpm] ep2 step12700 mse_eps=0.4849
+[train-ddpm] ep2 step12720 mse_eps=0.1047
+[train-ddpm] ep2 step12740 mse_eps=0.1802
+[train-ddpm] ep2 step12760 mse_eps=0.0530
+[train-ddpm] ep2 step12780 mse_eps=0.1949
+[train-ddpm] ep2 step12800 mse_eps=0.0833
+[train-ddpm] ep2 step12820 mse_eps=0.0774
+[train-ddpm] ep2 step12840 mse_eps=0.0353
+[train-ddpm] ep2 step12860 mse_eps=0.1226
+[train-ddpm] ep2 step12880 mse_eps=0.0740
+[train-ddpm] ep2 step12900 mse_eps=0.1703
+[train-ddpm] ep2 step12920 mse_eps=0.0379
+[train-ddpm] ep2 step12940 mse_eps=0.0409
+[train-ddpm] ep2 step12960 mse_eps=0.3307
+[train-ddpm] ep2 step12980 mse_eps=0.0386
+[train-ddpm] ep2 step13000 mse_eps=0.1282
+[train-ddpm] ep2 step13020 mse_eps=0.0132
+[train-ddpm] ep2 step13040 mse_eps=0.1881
+[train-ddpm] ep2 step13060 mse_eps=0.2162
+[train-ddpm] ep2 step13080 mse_eps=0.1708
+[train-ddpm] ep2 step13100 mse_eps=0.1258
+[train-ddpm] ep2 step13120 mse_eps=0.0868
+[train-ddpm] ep2 step13140 mse_eps=0.1253
+[train-ddpm] ep2 step13160 mse_eps=0.0812
+[train-ddpm] ep2 step13180 mse_eps=0.0458
+[train-ddpm] ep2 step13200 mse_eps=0.0505
+[train-ddpm] ep2 step13220 mse_eps=0.1356
+[train-ddpm] ep2 step13240 mse_eps=0.0234
+[train-ddpm] ep2 step13260 mse_eps=0.0086
+[train-ddpm] ep2 step13280 mse_eps=0.6078
+[train-ddpm] ep2 step13300 mse_eps=0.2210
+[train-ddpm] ep2 step13320 mse_eps=0.1063
+[train-ddpm] ep2 step13340 mse_eps=0.0760
+[train-ddpm] ep2 step13360 mse_eps=0.0088
+[train-ddpm] ep2 step13380 mse_eps=0.1809
+[train-ddpm] ep2 step13400 mse_eps=0.1899
+[train-ddpm] ep2 step13420 mse_eps=0.2348
+[train-ddpm] ep2 step13440 mse_eps=0.0840
+[train-ddpm] ep2 step13460 mse_eps=0.0411
+[train-ddpm] ep2 step13480 mse_eps=0.0437
+[val-ddpm] ep2 loss=0.1224  x0_l1=1.4901  res_target_l1=0.0425  res_x0_l1=0.1060  final_from_x0_psnr=31.95dB
+[train-ddpm] saved epoch sample grid (sampling took 2.4s)
+[val-ddpm] new best loss=0.1224
+[train-ddpm] ep3 step13500 mse_eps=0.3904
+[train-ddpm] ep3 step13520 mse_eps=0.0600
+[train-ddpm] ep3 step13540 mse_eps=0.1199
+[train-ddpm] ep3 step13560 mse_eps=0.0189
+[train-ddpm] ep3 step13580 mse_eps=0.5704
+[train-ddpm] ep3 step13600 mse_eps=0.0295
+[train-ddpm] ep3 step13620 mse_eps=0.5227
+[train-ddpm] ep3 step13640 mse_eps=0.3331
+[train-ddpm] ep3 step13660 mse_eps=0.0731
+[train-ddpm] ep3 step13680 mse_eps=0.1028
+[train-ddpm] ep3 step13700 mse_eps=0.0129
+[train-ddpm] ep3 step13720 mse_eps=0.4481
+[train-ddpm] ep3 step13740 mse_eps=0.0828
+[train-ddpm] ep3 step13760 mse_eps=0.6566
+[train-ddpm] ep3 step13780 mse_eps=0.0846
+[train-ddpm] ep3 step13800 mse_eps=0.1320
+[train-ddpm] ep3 step13820 mse_eps=0.0823
+[train-ddpm] ep3 step13840 mse_eps=0.0081
+[train-ddpm] ep3 step13860 mse_eps=0.2158
+[train-ddpm] ep3 step13880 mse_eps=0.3032
+[train-ddpm] ep3 step13900 mse_eps=0.5296
+[train-ddpm] ep3 step13920 mse_eps=0.1275
+[train-ddpm] ep3 step13940 mse_eps=0.0723
+[train-ddpm] ep3 step13960 mse_eps=0.0960
+[train-ddpm] ep3 step13980 mse_eps=0.3694
+[train-ddpm] ep3 step14000 mse_eps=0.0206
+[train-ddpm] ep3 step14020 mse_eps=0.0479
+[train-ddpm] ep3 step14040 mse_eps=0.5257
+[train-ddpm] ep3 step14060 mse_eps=0.2428
+[train-ddpm] ep3 step14080 mse_eps=0.0311
+[train-ddpm] ep3 step14100 mse_eps=0.1547
+[train-ddpm] ep3 step14120 mse_eps=0.0814
+[train-ddpm] ep3 step14140 mse_eps=0.1478
+[train-ddpm] ep3 step14160 mse_eps=0.1078
+[train-ddpm] ep3 step14180 mse_eps=0.1639
+[train-ddpm] ep3 step14200 mse_eps=0.3162
+[train-ddpm] ep3 step14220 mse_eps=0.2233
+[train-ddpm] ep3 step14240 mse_eps=0.0074
+[train-ddpm] ep3 step14260 mse_eps=0.0775
+[train-ddpm] ep3 step14280 mse_eps=0.1981
+[train-ddpm] ep3 step14300 mse_eps=0.0703
+[train-ddpm] ep3 step14320 mse_eps=0.0310
+[train-ddpm] ep3 step14340 mse_eps=0.0075
+[train-ddpm] ep3 step14360 mse_eps=0.1318
+[train-ddpm] ep3 step14380 mse_eps=0.1112
+[train-ddpm] ep3 step14400 mse_eps=0.2554
+[train-ddpm] ep3 step14420 mse_eps=0.2127
+[train-ddpm] ep3 step14440 mse_eps=0.0432
+[train-ddpm] ep3 step14460 mse_eps=0.0233
+[train-ddpm] ep3 step14480 mse_eps=0.3546
+[train-ddpm] ep3 step14500 mse_eps=0.1034
+[train-ddpm] ep3 step14520 mse_eps=0.1085
+[train-ddpm] ep3 step14540 mse_eps=0.0185
+[train-ddpm] ep3 step14560 mse_eps=0.1247
+[train-ddpm] ep3 step14580 mse_eps=0.1359
+[train-ddpm] ep3 step14600 mse_eps=0.2413
+[train-ddpm] ep3 step14620 mse_eps=0.4050
+[train-ddpm] ep3 step14640 mse_eps=0.2108
+[train-ddpm] ep3 step14660 mse_eps=0.3586
+[train-ddpm] ep3 step14680 mse_eps=0.0718
+[train-ddpm] ep3 step14700 mse_eps=0.1770
+[train-ddpm] ep3 step14720 mse_eps=0.1322
+[train-ddpm] ep3 step14740 mse_eps=0.1528
+[train-ddpm] ep3 step14760 mse_eps=0.3710
+[train-ddpm] ep3 step14780 mse_eps=0.0420
+[train-ddpm] ep3 step14800 mse_eps=0.0768
+[train-ddpm] ep3 step14820 mse_eps=0.0629
+[train-ddpm] ep3 step14840 mse_eps=0.0281
+[train-ddpm] ep3 step14860 mse_eps=0.0452
+[train-ddpm] ep3 step14880 mse_eps=0.5473
+[train-ddpm] ep3 step14900 mse_eps=0.1165
+[train-ddpm] ep3 step14920 mse_eps=0.1829
+[train-ddpm] ep3 step14940 mse_eps=0.5323
+[train-ddpm] ep3 step14960 mse_eps=0.1188
+[train-ddpm] ep3 step14980 mse_eps=0.4553
+[train-ddpm] ep3 step15000 mse_eps=0.0676
+[train-ddpm] ep3 step15020 mse_eps=0.3081
+[train-ddpm] ep3 step15040 mse_eps=0.2772
+[train-ddpm] ep3 step15060 mse_eps=0.0752
+[train-ddpm] ep3 step15080 mse_eps=0.0716
+[train-ddpm] ep3 step15100 mse_eps=0.1317
+[train-ddpm] ep3 step15120 mse_eps=0.0531
+[train-ddpm] ep3 step15140 mse_eps=0.0637
+[train-ddpm] ep3 step15160 mse_eps=0.0085
+[train-ddpm] ep3 step15180 mse_eps=0.0539
+[train-ddpm] ep3 step15200 mse_eps=0.0247
+[train-ddpm] ep3 step15220 mse_eps=0.0503
+[train-ddpm] ep3 step15240 mse_eps=0.1515
+[train-ddpm] ep3 step15260 mse_eps=0.0158
+[train-ddpm] ep3 step15280 mse_eps=0.0540
+[train-ddpm] ep3 step15300 mse_eps=0.1217
+[train-ddpm] ep3 step15320 mse_eps=0.0339
+[train-ddpm] ep3 step15340 mse_eps=0.2058
+[train-ddpm] ep3 step15360 mse_eps=0.0189
+[train-ddpm] ep3 step15380 mse_eps=0.0258
+[train-ddpm] ep3 step15400 mse_eps=0.0270
+[train-ddpm] ep3 step15420 mse_eps=0.0898
+[train-ddpm] ep3 step15440 mse_eps=0.0181
+[train-ddpm] ep3 step15460 mse_eps=0.0258
+[train-ddpm] ep3 step15480 mse_eps=0.1149
+[train-ddpm] ep3 step15500 mse_eps=0.0618
+[train-ddpm] ep3 step15520 mse_eps=0.0554
+[train-ddpm] ep3 step15540 mse_eps=0.0184
+[train-ddpm] ep3 step15560 mse_eps=0.2681
+[train-ddpm] ep3 step15580 mse_eps=0.0114
+[train-ddpm] ep3 step15600 mse_eps=0.0174
+[train-ddpm] ep3 step15620 mse_eps=0.0432
+[train-ddpm] ep3 step15640 mse_eps=0.0702
+[train-ddpm] ep3 step15660 mse_eps=0.0382
+[train-ddpm] ep3 step15680 mse_eps=0.4148
+[train-ddpm] ep3 step15700 mse_eps=0.0380
+[train-ddpm] ep3 step15720 mse_eps=0.1554
+[train-ddpm] ep3 step15740 mse_eps=0.1658
+[train-ddpm] ep3 step15760 mse_eps=0.3533
+[train-ddpm] ep3 step15780 mse_eps=0.5606
+[train-ddpm] ep3 step15800 mse_eps=0.1651
+[train-ddpm] ep3 step15820 mse_eps=0.1024
+[train-ddpm] ep3 step15840 mse_eps=0.1083
+[train-ddpm] ep3 step15860 mse_eps=0.0137
+[train-ddpm] ep3 step15880 mse_eps=0.0066
+[train-ddpm] ep3 step15900 mse_eps=0.1189
+[train-ddpm] ep3 step15920 mse_eps=0.1457
+[train-ddpm] ep3 step15940 mse_eps=0.0510
+[train-ddpm] ep3 step15960 mse_eps=0.0361
+[train-ddpm] ep3 step15980 mse_eps=0.0885
+[train-ddpm] ep3 step16000 mse_eps=0.0100
+[train-ddpm] ep3 step16020 mse_eps=0.1239
+[train-ddpm] ep3 step16040 mse_eps=0.1148
+[train-ddpm] ep3 step16060 mse_eps=0.2821
+[train-ddpm] ep3 step16080 mse_eps=0.0164
+[train-ddpm] ep3 step16100 mse_eps=0.1014
+[train-ddpm] ep3 step16120 mse_eps=0.0510
+[train-ddpm] ep3 step16140 mse_eps=0.0241
+[train-ddpm] ep3 step16160 mse_eps=0.0397
+[train-ddpm] ep3 step16180 mse_eps=0.0398
+[train-ddpm] ep3 step16200 mse_eps=0.3281
+[train-ddpm] ep3 step16220 mse_eps=0.0383
+[train-ddpm] ep3 step16240 mse_eps=0.3368
+[train-ddpm] ep3 step16260 mse_eps=0.3657
+[train-ddpm] ep3 step16280 mse_eps=0.0043
+[train-ddpm] ep3 step16300 mse_eps=0.3251
+[train-ddpm] ep3 step16320 mse_eps=0.0940
+[train-ddpm] ep3 step16340 mse_eps=0.0157
+[train-ddpm] ep3 step16360 mse_eps=0.0083
+[train-ddpm] ep3 step16380 mse_eps=0.2489
+[train-ddpm] ep3 step16400 mse_eps=0.2876
+[train-ddpm] ep3 step16420 mse_eps=0.0825
+[train-ddpm] ep3 step16440 mse_eps=0.0328
+[train-ddpm] ep3 step16460 mse_eps=0.0919
+[train-ddpm] ep3 step16480 mse_eps=0.0530
+[train-ddpm] ep3 step16500 mse_eps=0.3626
+[train-ddpm] ep3 step16520 mse_eps=0.0167
+[train-ddpm] ep3 step16540 mse_eps=0.1422
+[train-ddpm] ep3 step16560 mse_eps=0.0826
+[train-ddpm] ep3 step16580 mse_eps=0.0432
+[train-ddpm] ep3 step16600 mse_eps=0.1722
+[train-ddpm] ep3 step16620 mse_eps=0.0171
+[train-ddpm] ep3 step16640 mse_eps=0.4820
+[train-ddpm] ep3 step16660 mse_eps=0.0095
+[train-ddpm] ep3 step16680 mse_eps=0.0250
+[train-ddpm] ep3 step16700 mse_eps=0.2161
+[train-ddpm] ep3 step16720 mse_eps=0.2052
+[train-ddpm] ep3 step16740 mse_eps=0.1217
+[train-ddpm] ep3 step16760 mse_eps=0.0301
+[train-ddpm] ep3 step16780 mse_eps=0.0959
+[train-ddpm] ep3 step16800 mse_eps=0.0104
+[train-ddpm] ep3 step16820 mse_eps=0.1169
+[train-ddpm] ep3 step16840 mse_eps=0.0184
+[train-ddpm] ep3 step16860 mse_eps=0.0293
+[train-ddpm] ep3 step16880 mse_eps=0.0995
+[train-ddpm] ep3 step16900 mse_eps=0.0352
+[train-ddpm] ep3 step16920 mse_eps=0.1592
+[train-ddpm] ep3 step16940 mse_eps=0.0222
+[train-ddpm] ep3 step16960 mse_eps=0.1056
+[train-ddpm] ep3 step16980 mse_eps=0.1856
+[train-ddpm] ep3 step17000 mse_eps=0.3568
+[train-ddpm] ep3 step17020 mse_eps=0.0995
+[train-ddpm] ep3 step17040 mse_eps=0.0522
+[train-ddpm] ep3 step17060 mse_eps=0.4415
+[train-ddpm] ep3 step17080 mse_eps=0.1247
+[train-ddpm] ep3 step17100 mse_eps=0.1925
+[train-ddpm] ep3 step17120 mse_eps=0.0795
+[train-ddpm] ep3 step17140 mse_eps=0.0132
+[train-ddpm] ep3 step17160 mse_eps=0.0362
+[train-ddpm] ep3 step17180 mse_eps=0.0060
+[train-ddpm] ep3 step17200 mse_eps=0.0292
+[train-ddpm] ep3 step17220 mse_eps=0.0170
+[train-ddpm] ep3 step17240 mse_eps=0.0770
+[train-ddpm] ep3 step17260 mse_eps=0.0961
+[train-ddpm] ep3 step17280 mse_eps=0.0596
+[train-ddpm] ep3 step17300 mse_eps=0.0975
+[train-ddpm] ep3 step17320 mse_eps=0.0879
+[train-ddpm] ep3 step17340 mse_eps=0.0816
+[train-ddpm] ep3 step17360 mse_eps=0.1001
+[train-ddpm] ep3 step17380 mse_eps=0.1610
+[train-ddpm] ep3 step17400 mse_eps=0.2186
+[train-ddpm] ep3 step17420 mse_eps=0.0915
+[train-ddpm] ep3 step17440 mse_eps=0.0340
+[train-ddpm] ep3 step17460 mse_eps=0.0272
+[train-ddpm] ep3 step17480 mse_eps=0.0556
+[train-ddpm] ep3 step17500 mse_eps=0.0433
+[train-ddpm] ep3 step17520 mse_eps=0.0672
+[train-ddpm] ep3 step17540 mse_eps=0.0357
+[train-ddpm] ep3 step17560 mse_eps=0.0628
+[train-ddpm] ep3 step17580 mse_eps=0.1593
+[train-ddpm] ep3 step17600 mse_eps=0.3227
+[train-ddpm] ep3 step17620 mse_eps=0.0549
+[train-ddpm] ep3 step17640 mse_eps=0.0863
+[train-ddpm] ep3 step17660 mse_eps=0.1595
+[train-ddpm] ep3 step17680 mse_eps=0.0641
+[train-ddpm] ep3 step17700 mse_eps=0.1544
+[train-ddpm] ep3 step17720 mse_eps=0.0206
+[train-ddpm] ep3 step17740 mse_eps=0.2811
+[train-ddpm] ep3 step17760 mse_eps=0.0703
+[train-ddpm] ep3 step17780 mse_eps=0.0193
+[train-ddpm] ep3 step17800 mse_eps=0.1321
+[train-ddpm] ep3 step17820 mse_eps=0.0756
+[train-ddpm] ep3 step17840 mse_eps=0.1457
+[train-ddpm] ep3 step17860 mse_eps=0.0988
+[train-ddpm] ep3 step17880 mse_eps=0.0704
+[train-ddpm] ep3 step17900 mse_eps=0.0819
+[train-ddpm] ep3 step17920 mse_eps=0.0714
+[train-ddpm] ep3 step17940 mse_eps=0.1825
+[train-ddpm] ep3 step17960 mse_eps=0.0279
+[train-ddpm] ep3 step17980 mse_eps=0.0208
+[val-ddpm] ep3 loss=0.1234  x0_l1=0.3291  res_target_l1=0.0421  res_x0_l1=0.0234  final_from_x0_psnr=32.22dB
+[train-ddpm] saved epoch sample grid (sampling took 1.4s)
+[train-ddpm] ep4 step18000 mse_eps=0.0271
+[train-ddpm] ep4 step18020 mse_eps=0.0173
+[train-ddpm] ep4 step18040 mse_eps=0.0829
+[train-ddpm] ep4 step18060 mse_eps=0.0236
+[train-ddpm] ep4 step18080 mse_eps=0.1317
+[train-ddpm] ep4 step18100 mse_eps=0.0205
+[train-ddpm] ep4 step18120 mse_eps=0.0636
+[train-ddpm] ep4 step18140 mse_eps=0.0628
+[train-ddpm] ep4 step18160 mse_eps=0.0674
+[train-ddpm] ep4 step18180 mse_eps=0.0118
+[train-ddpm] ep4 step18200 mse_eps=0.0369
+[train-ddpm] ep4 step18220 mse_eps=0.0337
+[train-ddpm] ep4 step18240 mse_eps=0.1080
+[train-ddpm] ep4 step18260 mse_eps=0.2606
+[train-ddpm] ep4 step18280 mse_eps=0.0959
+[train-ddpm] ep4 step18300 mse_eps=0.0083
+[train-ddpm] ep4 step18320 mse_eps=0.1329
+[train-ddpm] ep4 step18340 mse_eps=0.0323
+[train-ddpm] ep4 step18360 mse_eps=0.4469
+[train-ddpm] ep4 step18380 mse_eps=0.0984
+[train-ddpm] ep4 step18400 mse_eps=0.2769
+[train-ddpm] ep4 step18420 mse_eps=0.1755
+[train-ddpm] ep4 step18440 mse_eps=0.1084
+[train-ddpm] ep4 step18460 mse_eps=0.0052
+[train-ddpm] ep4 step18480 mse_eps=0.0460
+[train-ddpm] ep4 step18500 mse_eps=0.0442
+[train-ddpm] ep4 step18520 mse_eps=0.0774
+[train-ddpm] ep4 step18540 mse_eps=0.0625
+[train-ddpm] ep4 step18560 mse_eps=0.0038
+[train-ddpm] ep4 step18580 mse_eps=0.0063
+[train-ddpm] ep4 step18600 mse_eps=0.0285
+[train-ddpm] ep4 step18620 mse_eps=0.0424
+[train-ddpm] ep4 step18640 mse_eps=0.1595
+[train-ddpm] ep4 step18660 mse_eps=0.1369
+[train-ddpm] ep4 step18680 mse_eps=0.0185
+[train-ddpm] ep4 step18700 mse_eps=0.0775
+[train-ddpm] ep4 step18720 mse_eps=0.4388
+[train-ddpm] ep4 step18740 mse_eps=0.0109
+[train-ddpm] ep4 step18760 mse_eps=0.0616
+[train-ddpm] ep4 step18780 mse_eps=0.1855
+[train-ddpm] ep4 step18800 mse_eps=0.0045
+[train-ddpm] ep4 step18820 mse_eps=0.0074
+[train-ddpm] ep4 step18840 mse_eps=0.0481
+[train-ddpm] ep4 step18860 mse_eps=0.0281
+[train-ddpm] ep4 step18880 mse_eps=0.0849
+[train-ddpm] ep4 step18900 mse_eps=0.0216
+[train-ddpm] ep4 step18920 mse_eps=0.1730
+[train-ddpm] ep4 step18940 mse_eps=0.0872
+[train-ddpm] ep4 step18960 mse_eps=0.0126
+[train-ddpm] ep4 step18980 mse_eps=0.0574
+[train-ddpm] ep4 step19000 mse_eps=0.0756
+[train-ddpm] ep4 step19020 mse_eps=0.1641
+[train-ddpm] ep4 step19040 mse_eps=0.2387
+[train-ddpm] ep4 step19060 mse_eps=0.0083
+[train-ddpm] ep4 step19080 mse_eps=0.0725
+[train-ddpm] ep4 step19100 mse_eps=0.2730
+[train-ddpm] ep4 step19120 mse_eps=0.1678
+[train-ddpm] ep4 step19140 mse_eps=0.0296
+[train-ddpm] ep4 step19160 mse_eps=0.2422
+[train-ddpm] ep4 step19180 mse_eps=0.2543
+[train-ddpm] ep4 step19200 mse_eps=0.1046
+[train-ddpm] ep4 step19220 mse_eps=0.0126
+[train-ddpm] ep4 step19240 mse_eps=0.0063
+[train-ddpm] ep4 step19260 mse_eps=0.0143
+[train-ddpm] ep4 step19280 mse_eps=0.0607
+[train-ddpm] ep4 step19300 mse_eps=0.0419
+[train-ddpm] ep4 step19320 mse_eps=0.1493
+[train-ddpm] ep4 step19340 mse_eps=0.1112
+[train-ddpm] ep4 step19360 mse_eps=0.1440
+[train-ddpm] ep4 step19380 mse_eps=0.0926
+[train-ddpm] ep4 step19400 mse_eps=0.2732
+[train-ddpm] ep4 step19420 mse_eps=0.0477
+[train-ddpm] ep4 step19440 mse_eps=0.0609
+[train-ddpm] ep4 step19460 mse_eps=0.0416
+[train-ddpm] ep4 step19480 mse_eps=0.2215
+[train-ddpm] ep4 step19500 mse_eps=0.0137
+[train-ddpm] ep4 step19520 mse_eps=0.0349
+[train-ddpm] ep4 step19540 mse_eps=0.1764
+[train-ddpm] ep4 step19560 mse_eps=0.1803
+[train-ddpm] ep4 step19580 mse_eps=0.2212
+[train-ddpm] ep4 step19600 mse_eps=0.0513
+[train-ddpm] ep4 step19620 mse_eps=0.1297
+[train-ddpm] ep4 step19640 mse_eps=0.0767
+[train-ddpm] ep4 step19660 mse_eps=0.0048
+[train-ddpm] ep4 step19680 mse_eps=0.1098
+[train-ddpm] ep4 step19700 mse_eps=0.2456
+[train-ddpm] ep4 step19720 mse_eps=0.0775
+[train-ddpm] ep4 step19740 mse_eps=0.1207
+[train-ddpm] ep4 step19760 mse_eps=0.0606
+[train-ddpm] ep4 step19780 mse_eps=0.1379
+[train-ddpm] ep4 step19800 mse_eps=0.0929
+[train-ddpm] ep4 step19820 mse_eps=0.0392
+[train-ddpm] ep4 step19840 mse_eps=0.0920
+[train-ddpm] ep4 step19860 mse_eps=0.0470
+[train-ddpm] ep4 step19880 mse_eps=0.0500
+[train-ddpm] ep4 step19900 mse_eps=0.1901
+[train-ddpm] ep4 step19920 mse_eps=0.2982
+[train-ddpm] ep4 step19940 mse_eps=0.0297
+[train-ddpm] ep4 step19960 mse_eps=0.2965
+[train-ddpm] ep4 step19980 mse_eps=0.0251
+[train-ddpm] ep4 step20000 mse_eps=0.1369
+[train-ddpm] ep4 step20020 mse_eps=0.1618
+[train-ddpm] ep4 step20040 mse_eps=0.2682
+[train-ddpm] ep4 step20060 mse_eps=0.1422
+[train-ddpm] ep4 step20080 mse_eps=0.0629
+[train-ddpm] ep4 step20100 mse_eps=0.4575
+[train-ddpm] ep4 step20120 mse_eps=0.1085
+[train-ddpm] ep4 step20140 mse_eps=0.0409
+[train-ddpm] ep4 step20160 mse_eps=0.0325
+[train-ddpm] ep4 step20180 mse_eps=0.0230
+[train-ddpm] ep4 step20200 mse_eps=0.1195
+[train-ddpm] ep4 step20220 mse_eps=0.0393
+[train-ddpm] ep4 step20240 mse_eps=0.0393
+[train-ddpm] ep4 step20260 mse_eps=0.1380
+[train-ddpm] ep4 step20280 mse_eps=0.0141
+[train-ddpm] ep4 step20300 mse_eps=0.0358
+[train-ddpm] ep4 step20320 mse_eps=0.1333
+[train-ddpm] ep4 step20340 mse_eps=0.0634
+[train-ddpm] ep4 step20360 mse_eps=0.0807
+[train-ddpm] ep4 step20380 mse_eps=0.1615
+[train-ddpm] ep4 step20400 mse_eps=0.1319
+[train-ddpm] ep4 step20420 mse_eps=0.0103
+[train-ddpm] ep4 step20440 mse_eps=0.0288
+[train-ddpm] ep4 step20460 mse_eps=0.0655
+[train-ddpm] ep4 step20480 mse_eps=0.1539
+[train-ddpm] ep4 step20500 mse_eps=0.0357
+[train-ddpm] ep4 step20520 mse_eps=0.0081
+[train-ddpm] ep4 step20540 mse_eps=0.0308
+[train-ddpm] ep4 step20560 mse_eps=0.0815
+[train-ddpm] ep4 step20580 mse_eps=0.0296
+[train-ddpm] ep4 step20600 mse_eps=0.1867
+[train-ddpm] ep4 step20620 mse_eps=0.0282
+[train-ddpm] ep4 step20640 mse_eps=0.0846
+[train-ddpm] ep4 step20660 mse_eps=0.1658
+[train-ddpm] ep4 step20680 mse_eps=0.2954
+[train-ddpm] ep4 step20700 mse_eps=0.0090
+[train-ddpm] ep4 step20720 mse_eps=0.1962
+[train-ddpm] ep4 step20740 mse_eps=0.0856
+[train-ddpm] ep4 step20760 mse_eps=0.1295
+[train-ddpm] ep4 step20780 mse_eps=0.1163
+[train-ddpm] ep4 step20800 mse_eps=0.0179
+[train-ddpm] ep4 step20820 mse_eps=0.0478
+[train-ddpm] ep4 step20840 mse_eps=0.1658
+[train-ddpm] ep4 step20860 mse_eps=0.1712
+[train-ddpm] ep4 step20880 mse_eps=0.0233
+[train-ddpm] ep4 step20900 mse_eps=0.0236
+[train-ddpm] ep4 step20920 mse_eps=0.0582
+[train-ddpm] ep4 step20940 mse_eps=0.0138
+[train-ddpm] ep4 step20960 mse_eps=0.1398
+[train-ddpm] ep4 step20980 mse_eps=0.0828
+[train-ddpm] ep4 step21000 mse_eps=0.1281
+[train-ddpm] ep4 step21020 mse_eps=0.0218
+[train-ddpm] ep4 step21040 mse_eps=0.0826
+[train-ddpm] ep4 step21060 mse_eps=0.0469
+[train-ddpm] ep4 step21080 mse_eps=0.2034
+[train-ddpm] ep4 step21100 mse_eps=0.0479
+[train-ddpm] ep4 step21120 mse_eps=0.2452
+[train-ddpm] ep4 step21140 mse_eps=0.0592
+[train-ddpm] ep4 step21160 mse_eps=0.0516
+[train-ddpm] ep4 step21180 mse_eps=0.0418
+[train-ddpm] ep4 step21200 mse_eps=0.1904
+[train-ddpm] ep4 step21220 mse_eps=0.0067
+[train-ddpm] ep4 step21240 mse_eps=0.1079
+[train-ddpm] ep4 step21260 mse_eps=0.1075
+[train-ddpm] ep4 step21280 mse_eps=0.0103
+[train-ddpm] ep4 step21300 mse_eps=0.2065
+[train-ddpm] ep4 step21320 mse_eps=0.0034
+[train-ddpm] ep4 step21340 mse_eps=0.2970
+[train-ddpm] ep4 step21360 mse_eps=0.0911
+[train-ddpm] ep4 step21380 mse_eps=0.0143
+[train-ddpm] ep4 step21400 mse_eps=0.1271
+[train-ddpm] ep4 step21420 mse_eps=0.2457
+[train-ddpm] ep4 step21440 mse_eps=0.0114
+[train-ddpm] ep4 step21460 mse_eps=0.1359
+[train-ddpm] ep4 step21480 mse_eps=0.1540
+[train-ddpm] ep4 step21500 mse_eps=0.0147
+[train-ddpm] ep4 step21520 mse_eps=0.0184
+[train-ddpm] ep4 step21540 mse_eps=0.1774
+[train-ddpm] ep4 step21560 mse_eps=0.0149
+[train-ddpm] ep4 step21580 mse_eps=0.0066
+[train-ddpm] ep4 step21600 mse_eps=0.0979
+[train-ddpm] ep4 step21620 mse_eps=0.1909
+[train-ddpm] ep4 step21640 mse_eps=0.0272
+[train-ddpm] ep4 step21660 mse_eps=0.1892
+[train-ddpm] ep4 step21680 mse_eps=0.0320
+[train-ddpm] ep4 step21700 mse_eps=0.0628
+[train-ddpm] ep4 step21720 mse_eps=0.2401
+[train-ddpm] ep4 step21740 mse_eps=0.0082
+[train-ddpm] ep4 step21760 mse_eps=0.0194
+[train-ddpm] ep4 step21780 mse_eps=0.1146
+[train-ddpm] ep4 step21800 mse_eps=0.3793
+[train-ddpm] ep4 step21820 mse_eps=0.1215
+[train-ddpm] ep4 step21840 mse_eps=0.0346
+[train-ddpm] ep4 step21860 mse_eps=0.1882
+[train-ddpm] ep4 step21880 mse_eps=0.0335
+[train-ddpm] ep4 step21900 mse_eps=0.0584
+[train-ddpm] ep4 step21920 mse_eps=0.0271
+[train-ddpm] ep4 step21940 mse_eps=0.2966
+[train-ddpm] ep4 step21960 mse_eps=0.1376
+[train-ddpm] ep4 step21980 mse_eps=0.0481
+[train-ddpm] ep4 step22000 mse_eps=0.0457
+[train-ddpm] ep4 step22020 mse_eps=0.0730
+[train-ddpm] ep4 step22040 mse_eps=0.3046
+[train-ddpm] ep4 step22060 mse_eps=0.0031
+[train-ddpm] ep4 step22080 mse_eps=0.0128
+[train-ddpm] ep4 step22100 mse_eps=0.0914
+[train-ddpm] ep4 step22120 mse_eps=0.0228
+[train-ddpm] ep4 step22140 mse_eps=0.3080
+[train-ddpm] ep4 step22160 mse_eps=0.0193
+[train-ddpm] ep4 step22180 mse_eps=0.0233
+[train-ddpm] ep4 step22200 mse_eps=0.0323
+[train-ddpm] ep4 step22220 mse_eps=0.1188
+[train-ddpm] ep4 step22240 mse_eps=0.0442
+[train-ddpm] ep4 step22260 mse_eps=0.3550
+[train-ddpm] ep4 step22280 mse_eps=0.4710
+[train-ddpm] ep4 step22300 mse_eps=0.0652
+[train-ddpm] ep4 step22320 mse_eps=0.1195
+[train-ddpm] ep4 step22340 mse_eps=0.0246
+[train-ddpm] ep4 step22360 mse_eps=0.0250
+[train-ddpm] ep4 step22380 mse_eps=0.2392
+[train-ddpm] ep4 step22400 mse_eps=0.0385
+[train-ddpm] ep4 step22420 mse_eps=0.0066
+[train-ddpm] ep4 step22440 mse_eps=0.0819
+[train-ddpm] ep4 step22460 mse_eps=0.2364
+[train-ddpm] ep4 step22480 mse_eps=0.4508
+[val-ddpm] ep4 loss=0.1294  x0_l1=0.4563  res_target_l1=0.0418  res_x0_l1=0.0325  final_from_x0_psnr=32.20dB
+[train-ddpm] saved epoch sample grid (sampling took 1.4s)
+[train-ddpm] ep5 step22500 mse_eps=0.0240
+[train-ddpm] ep5 step22520 mse_eps=0.1419
+[train-ddpm] ep5 step22540 mse_eps=0.0838
+[train-ddpm] ep5 step22560 mse_eps=0.1470
+[train-ddpm] ep5 step22580 mse_eps=0.0626
+[train-ddpm] ep5 step22600 mse_eps=0.0093
+[train-ddpm] ep5 step22620 mse_eps=0.0956
+[train-ddpm] ep5 step22640 mse_eps=0.0307
+[train-ddpm] ep5 step22660 mse_eps=0.0609
+[train-ddpm] ep5 step22680 mse_eps=0.0223
+[train-ddpm] ep5 step22700 mse_eps=0.0427
+[train-ddpm] ep5 step22720 mse_eps=0.1209
+[train-ddpm] ep5 step22740 mse_eps=0.0120
+[train-ddpm] ep5 step22760 mse_eps=0.4909
+[train-ddpm] ep5 step22780 mse_eps=0.0288
+[train-ddpm] ep5 step22800 mse_eps=0.1854
+[train-ddpm] ep5 step22820 mse_eps=0.2014
+[train-ddpm] ep5 step22840 mse_eps=0.0070
+[train-ddpm] ep5 step22860 mse_eps=0.0501
+[train-ddpm] ep5 step22880 mse_eps=0.0195
+[train-ddpm] ep5 step22900 mse_eps=0.0249
+[train-ddpm] ep5 step22920 mse_eps=0.0851
+[train-ddpm] ep5 step22940 mse_eps=0.0698
+[train-ddpm] ep5 step22960 mse_eps=0.0067
+[train-ddpm] ep5 step22980 mse_eps=0.0256
+[train-ddpm] ep5 step23000 mse_eps=0.0165
+[train-ddpm] ep5 step23020 mse_eps=0.1040
+[train-ddpm] ep5 step23040 mse_eps=0.0258
+[train-ddpm] ep5 step23060 mse_eps=0.0238
+[train-ddpm] ep5 step23080 mse_eps=0.0165
+[train-ddpm] ep5 step23100 mse_eps=0.1674
+[train-ddpm] ep5 step23120 mse_eps=0.0184
+[train-ddpm] ep5 step23140 mse_eps=0.2493
+[train-ddpm] ep5 step23160 mse_eps=0.0316
+[train-ddpm] ep5 step23180 mse_eps=0.1457
+[train-ddpm] ep5 step23200 mse_eps=0.0061
+[train-ddpm] ep5 step23220 mse_eps=0.0467
+[train-ddpm] ep5 step23240 mse_eps=0.0865
+[train-ddpm] ep5 step23260 mse_eps=0.0393
+[train-ddpm] ep5 step23280 mse_eps=0.8676
+[train-ddpm] ep5 step23300 mse_eps=0.3717
+[train-ddpm] ep5 step23320 mse_eps=0.0482
+[train-ddpm] ep5 step23340 mse_eps=0.0898
+[train-ddpm] ep5 step23360 mse_eps=0.2248
+[train-ddpm] ep5 step23380 mse_eps=0.1116
+[train-ddpm] ep5 step23400 mse_eps=0.0445
+[train-ddpm] ep5 step23420 mse_eps=0.0503
+[train-ddpm] ep5 step23440 mse_eps=0.0727
+[train-ddpm] ep5 step23460 mse_eps=0.0346
+[train-ddpm] ep5 step23480 mse_eps=0.0515
+[train-ddpm] ep5 step23500 mse_eps=0.2097
+[train-ddpm] ep5 step23520 mse_eps=0.0676
+[train-ddpm] ep5 step23540 mse_eps=0.0182
+[train-ddpm] ep5 step23560 mse_eps=0.0357
+[train-ddpm] ep5 step23580 mse_eps=0.0856
+[train-ddpm] ep5 step23600 mse_eps=0.2166
+[train-ddpm] ep5 step23620 mse_eps=0.1355
+[train-ddpm] ep5 step23640 mse_eps=0.0515
+[train-ddpm] ep5 step23660 mse_eps=0.1473
+[train-ddpm] ep5 step23680 mse_eps=0.0312
+[train-ddpm] ep5 step23700 mse_eps=0.0572
+[train-ddpm] ep5 step23720 mse_eps=0.0502
+[train-ddpm] ep5 step23740 mse_eps=0.0799
+[train-ddpm] ep5 step23760 mse_eps=0.0744
+[train-ddpm] ep5 step23780 mse_eps=0.0700
+[train-ddpm] ep5 step23800 mse_eps=0.0628
+[train-ddpm] ep5 step23820 mse_eps=0.0933
+[train-ddpm] ep5 step23840 mse_eps=0.2628
+[train-ddpm] ep5 step23860 mse_eps=0.0919
+[train-ddpm] ep5 step23880 mse_eps=0.0063
+[train-ddpm] ep5 step23900 mse_eps=0.0307
+[train-ddpm] ep5 step23920 mse_eps=0.2004
+[train-ddpm] ep5 step23940 mse_eps=0.0725
+[train-ddpm] ep5 step23960 mse_eps=0.0155
+[train-ddpm] ep5 step23980 mse_eps=0.0414
+[train-ddpm] ep5 step24000 mse_eps=0.0789
+[train-ddpm] ep5 step24020 mse_eps=0.1589
+[train-ddpm] ep5 step24040 mse_eps=0.0805
+[train-ddpm] ep5 step24060 mse_eps=0.3797
+[train-ddpm] ep5 step24080 mse_eps=0.0675
+[train-ddpm] ep5 step24100 mse_eps=0.0598
+[train-ddpm] ep5 step24120 mse_eps=0.0606
+[train-ddpm] ep5 step24140 mse_eps=0.3947
+[train-ddpm] ep5 step24160 mse_eps=0.0085
+[train-ddpm] ep5 step24180 mse_eps=0.2751
+[train-ddpm] ep5 step24200 mse_eps=0.1176
+[train-ddpm] ep5 step24220 mse_eps=0.2148
+[train-ddpm] ep5 step24240 mse_eps=0.0111
+[train-ddpm] ep5 step24260 mse_eps=0.0501
+[train-ddpm] ep5 step24280 mse_eps=0.0858
+[train-ddpm] ep5 step24300 mse_eps=0.0414
+[train-ddpm] ep5 step24320 mse_eps=0.0472
+[train-ddpm] ep5 step24340 mse_eps=0.1157
+[train-ddpm] ep5 step24360 mse_eps=0.2366
+[train-ddpm] ep5 step24380 mse_eps=0.1065
+[train-ddpm] ep5 step24400 mse_eps=0.2507
+[train-ddpm] ep5 step24420 mse_eps=0.2720
+[train-ddpm] ep5 step24440 mse_eps=0.1783
+[train-ddpm] ep5 step24460 mse_eps=0.0361
+[train-ddpm] ep5 step24480 mse_eps=0.1102
+[train-ddpm] ep5 step24500 mse_eps=0.0198
+[train-ddpm] ep5 step24520 mse_eps=0.0723
+[train-ddpm] ep5 step24540 mse_eps=0.3291
+[train-ddpm] ep5 step24560 mse_eps=0.1614
+[train-ddpm] ep5 step24580 mse_eps=0.0048
+[train-ddpm] ep5 step24600 mse_eps=0.3383
+[train-ddpm] ep5 step24620 mse_eps=0.1261
+[train-ddpm] ep5 step24640 mse_eps=0.2454
+[train-ddpm] ep5 step24660 mse_eps=0.2174
+[train-ddpm] ep5 step24680 mse_eps=0.4511
+[train-ddpm] ep5 step24700 mse_eps=0.0483
+[train-ddpm] ep5 step24720 mse_eps=0.0281
+[train-ddpm] ep5 step24740 mse_eps=0.1277
+[train-ddpm] ep5 step24760 mse_eps=0.0584
+[train-ddpm] ep5 step24780 mse_eps=0.3023
+[train-ddpm] ep5 step24800 mse_eps=0.8512
+[train-ddpm] ep5 step24820 mse_eps=0.1428
+[train-ddpm] ep5 step24840 mse_eps=0.1062
+[train-ddpm] ep5 step24860 mse_eps=0.1473
+[train-ddpm] ep5 step24880 mse_eps=0.1448
+[train-ddpm] ep5 step24900 mse_eps=0.0602
+[train-ddpm] ep5 step24920 mse_eps=0.0141
+[train-ddpm] ep5 step24940 mse_eps=0.1950
+[train-ddpm] ep5 step24960 mse_eps=0.0888
+[train-ddpm] ep5 step24980 mse_eps=0.0602
+[train-ddpm] ep5 step25000 mse_eps=0.0292
+[train-ddpm] ep5 step25020 mse_eps=0.0180
+[train-ddpm] ep5 step25040 mse_eps=0.1581
+[train-ddpm] ep5 step25060 mse_eps=0.1212
+[train-ddpm] ep5 step25080 mse_eps=0.3521
+[train-ddpm] ep5 step25100 mse_eps=0.3651
+[train-ddpm] ep5 step25120 mse_eps=0.0729
+[train-ddpm] ep5 step25140 mse_eps=0.1047
+[train-ddpm] ep5 step25160 mse_eps=0.1059
+[train-ddpm] ep5 step25180 mse_eps=0.1298
+[train-ddpm] ep5 step25200 mse_eps=0.1332
+[train-ddpm] ep5 step25220 mse_eps=0.0259
+[train-ddpm] ep5 step25240 mse_eps=0.0977
+[train-ddpm] ep5 step25260 mse_eps=0.2868
+[train-ddpm] ep5 step25280 mse_eps=0.0146
+[train-ddpm] ep5 step25300 mse_eps=0.2721
+[train-ddpm] ep5 step25320 mse_eps=0.3576
+[train-ddpm] ep5 step25340 mse_eps=0.0702
+[train-ddpm] ep5 step25360 mse_eps=0.0486
+[train-ddpm] ep5 step25380 mse_eps=0.0984
+[train-ddpm] ep5 step25400 mse_eps=0.0479
+[train-ddpm] ep5 step25420 mse_eps=0.0549
+[train-ddpm] ep5 step25440 mse_eps=0.0084
+[train-ddpm] ep5 step25460 mse_eps=0.0403
+[train-ddpm] ep5 step25480 mse_eps=0.0275
+[train-ddpm] ep5 step25500 mse_eps=0.0906
+[train-ddpm] ep5 step25520 mse_eps=0.0052
+[train-ddpm] ep5 step25540 mse_eps=0.0038
+[train-ddpm] ep5 step25560 mse_eps=0.0220
+[train-ddpm] ep5 step25580 mse_eps=0.0519
+[train-ddpm] ep5 step25600 mse_eps=0.7942
+[train-ddpm] ep5 step25620 mse_eps=0.0199
+[train-ddpm] ep5 step25640 mse_eps=0.1111
+[train-ddpm] ep5 step25660 mse_eps=0.1479
+[train-ddpm] ep5 step25680 mse_eps=0.0135
+[train-ddpm] ep5 step25700 mse_eps=0.1013
+[train-ddpm] ep5 step25720 mse_eps=0.0560
+[train-ddpm] ep5 step25740 mse_eps=0.2088
+[train-ddpm] ep5 step25760 mse_eps=0.1972
+[train-ddpm] ep5 step25780 mse_eps=0.0315
+[train-ddpm] ep5 step25800 mse_eps=0.0063
+[train-ddpm] ep5 step25820 mse_eps=0.1209
+[train-ddpm] ep5 step25840 mse_eps=0.0165
+[train-ddpm] ep5 step25860 mse_eps=0.0367
+[train-ddpm] ep5 step25880 mse_eps=0.4883
+[train-ddpm] ep5 step25900 mse_eps=0.3819
+[train-ddpm] ep5 step25920 mse_eps=0.0728
+[train-ddpm] ep5 step25940 mse_eps=0.0569
+[train-ddpm] ep5 step25960 mse_eps=0.1125
+[train-ddpm] ep5 step25980 mse_eps=0.0424
+[train-ddpm] ep5 step26000 mse_eps=0.0168
+[train-ddpm] ep5 step26020 mse_eps=0.0417
+[train-ddpm] ep5 step26040 mse_eps=0.2820
+[train-ddpm] ep5 step26060 mse_eps=0.1263
+[train-ddpm] ep5 step26080 mse_eps=0.0116
+[train-ddpm] ep5 step26100 mse_eps=0.0792
+[train-ddpm] ep5 step26120 mse_eps=0.0270
+[train-ddpm] ep5 step26140 mse_eps=0.0152
+[train-ddpm] ep5 step26160 mse_eps=0.1312
+[train-ddpm] ep5 step26180 mse_eps=0.1809
+[train-ddpm] ep5 step26200 mse_eps=0.0419
+[train-ddpm] ep5 step26220 mse_eps=0.0052
+[train-ddpm] ep5 step26240 mse_eps=0.0888
+[train-ddpm] ep5 step26260 mse_eps=0.0142
+[train-ddpm] ep5 step26280 mse_eps=0.1100
+[train-ddpm] ep5 step26300 mse_eps=0.1741
+[train-ddpm] ep5 step26320 mse_eps=0.1038
+[train-ddpm] ep5 step26340 mse_eps=0.0189
+[train-ddpm] ep5 step26360 mse_eps=0.0161
+[train-ddpm] ep5 step26380 mse_eps=0.0866
+[train-ddpm] ep5 step26400 mse_eps=0.0622
+[train-ddpm] ep5 step26420 mse_eps=0.5431
+[train-ddpm] ep5 step26440 mse_eps=0.0493
+[train-ddpm] ep5 step26460 mse_eps=0.1091
+[train-ddpm] ep5 step26480 mse_eps=0.0350
+[train-ddpm] ep5 step26500 mse_eps=0.0484
+[train-ddpm] ep5 step26520 mse_eps=0.0383
+[train-ddpm] ep5 step26540 mse_eps=0.3696
+[train-ddpm] ep5 step26560 mse_eps=0.0150
+[train-ddpm] ep5 step26580 mse_eps=0.0787
+[train-ddpm] ep5 step26600 mse_eps=0.1435
+[train-ddpm] ep5 step26620 mse_eps=0.0706
+[train-ddpm] ep5 step26640 mse_eps=0.0169
+[train-ddpm] ep5 step26660 mse_eps=0.1425
+[train-ddpm] ep5 step26680 mse_eps=0.2945
+[train-ddpm] ep5 step26700 mse_eps=0.2817
+[train-ddpm] ep5 step26720 mse_eps=0.2378
+[train-ddpm] ep5 step26740 mse_eps=0.1081
+[train-ddpm] ep5 step26760 mse_eps=0.0049
+[train-ddpm] ep5 step26780 mse_eps=0.0357
+[train-ddpm] ep5 step26800 mse_eps=0.0496
+[train-ddpm] ep5 step26820 mse_eps=0.0091
+[train-ddpm] ep5 step26840 mse_eps=0.3526
+[train-ddpm] ep5 step26860 mse_eps=0.1036
+[train-ddpm] ep5 step26880 mse_eps=0.2953
+[train-ddpm] ep5 step26900 mse_eps=0.0059
+[train-ddpm] ep5 step26920 mse_eps=0.2254
+[train-ddpm] ep5 step26940 mse_eps=0.0219
+[train-ddpm] ep5 step26960 mse_eps=0.0305
+[train-ddpm] ep5 step26980 mse_eps=0.1784
+[val-ddpm] ep5 loss=0.1212  x0_l1=1.1965  res_target_l1=0.0431  res_x0_l1=0.0851  final_from_x0_psnr=31.84dB
+[train-ddpm] saved epoch sample grid (sampling took 1.4s)
+[val-ddpm] new best loss=0.1212
+[train-ddpm] ep6 step27000 mse_eps=0.1767
+[train-ddpm] ep6 step27020 mse_eps=0.0331
+[train-ddpm] ep6 step27040 mse_eps=0.2221
+[train-ddpm] ep6 step27060 mse_eps=0.0718
+[train-ddpm] ep6 step27080 mse_eps=0.2254
+[train-ddpm] ep6 step27100 mse_eps=0.1108
+[train-ddpm] ep6 step27120 mse_eps=0.0622
+[train-ddpm] ep6 step27140 mse_eps=0.0166
+[train-ddpm] ep6 step27160 mse_eps=0.3356
+[train-ddpm] ep6 step27180 mse_eps=0.1364
+[train-ddpm] ep6 step27200 mse_eps=0.0495
+[train-ddpm] ep6 step27220 mse_eps=0.0104
+[train-ddpm] ep6 step27240 mse_eps=0.2062
+[train-ddpm] ep6 step27260 mse_eps=0.0149
+[train-ddpm] ep6 step27280 mse_eps=0.0621
+[train-ddpm] ep6 step27300 mse_eps=0.0739
+[train-ddpm] ep6 step27320 mse_eps=0.0350
+[train-ddpm] ep6 step27340 mse_eps=0.0082
+[train-ddpm] ep6 step27360 mse_eps=0.4286
+[train-ddpm] ep6 step27380 mse_eps=0.0526
+[train-ddpm] ep6 step27400 mse_eps=0.0156
+[train-ddpm] ep6 step27420 mse_eps=0.0831
+[train-ddpm] ep6 step27440 mse_eps=0.0359
+[train-ddpm] ep6 step27460 mse_eps=0.2347
+[train-ddpm] ep6 step27480 mse_eps=0.0684
+[train-ddpm] ep6 step27500 mse_eps=0.1459
+[train-ddpm] ep6 step27520 mse_eps=0.0866
+[train-ddpm] ep6 step27540 mse_eps=0.0874
+[train-ddpm] ep6 step27560 mse_eps=0.0587
+[train-ddpm] ep6 step27580 mse_eps=0.1146
+[train-ddpm] ep6 step27600 mse_eps=0.3393
+[train-ddpm] ep6 step27620 mse_eps=0.0246
+[train-ddpm] ep6 step27640 mse_eps=0.0429
+[train-ddpm] ep6 step27660 mse_eps=0.0024
+[train-ddpm] ep6 step27680 mse_eps=0.1638
+[train-ddpm] ep6 step27700 mse_eps=0.0035
+[train-ddpm] ep6 step27720 mse_eps=0.1032
+[train-ddpm] ep6 step27740 mse_eps=0.0127
+[train-ddpm] ep6 step27760 mse_eps=0.0360
+[train-ddpm] ep6 step27780 mse_eps=0.0175
+[train-ddpm] ep6 step27800 mse_eps=0.2042
+[train-ddpm] ep6 step27820 mse_eps=0.0428
+[train-ddpm] ep6 step27840 mse_eps=0.1595
+[train-ddpm] ep6 step27860 mse_eps=0.0502
+[train-ddpm] ep6 step27880 mse_eps=0.0171
+[train-ddpm] ep6 step27900 mse_eps=0.1787
+[train-ddpm] ep6 step27920 mse_eps=0.0547
+[train-ddpm] ep6 step27940 mse_eps=0.0064
+[train-ddpm] ep6 step27960 mse_eps=0.5359
+[train-ddpm] ep6 step27980 mse_eps=0.0862
+[train-ddpm] ep6 step28000 mse_eps=0.0909
+[train-ddpm] ep6 step28020 mse_eps=0.0728
+[train-ddpm] ep6 step28040 mse_eps=0.0935
+[train-ddpm] ep6 step28060 mse_eps=0.0047
+[train-ddpm] ep6 step28080 mse_eps=0.0679
+[train-ddpm] ep6 step28100 mse_eps=0.0852
+[train-ddpm] ep6 step28120 mse_eps=0.0460
+[train-ddpm] ep6 step28140 mse_eps=0.0688
+[train-ddpm] ep6 step28160 mse_eps=0.3650
+[train-ddpm] ep6 step28180 mse_eps=0.5334
+[train-ddpm] ep6 step28200 mse_eps=0.4610
+[train-ddpm] ep6 step28220 mse_eps=0.2361
+[train-ddpm] ep6 step28240 mse_eps=0.1177
+[train-ddpm] ep6 step28260 mse_eps=0.0681
+[train-ddpm] ep6 step28280 mse_eps=0.1995
+[train-ddpm] ep6 step28300 mse_eps=0.1225
+[train-ddpm] ep6 step28320 mse_eps=0.2173
+[train-ddpm] ep6 step28340 mse_eps=0.0929
+[train-ddpm] ep6 step28360 mse_eps=0.2502
+[train-ddpm] ep6 step28380 mse_eps=0.0266
+[train-ddpm] ep6 step28400 mse_eps=0.1050
+[train-ddpm] ep6 step28420 mse_eps=0.1704
+[train-ddpm] ep6 step28440 mse_eps=0.0059
+[train-ddpm] ep6 step28460 mse_eps=0.2042
+[train-ddpm] ep6 step28480 mse_eps=0.1403
+[train-ddpm] ep6 step28500 mse_eps=0.0087
+[train-ddpm] ep6 step28520 mse_eps=0.0128
+[train-ddpm] ep6 step28540 mse_eps=0.0957
+[train-ddpm] ep6 step28560 mse_eps=0.1087
+[train-ddpm] ep6 step28580 mse_eps=0.0555
+[train-ddpm] ep6 step28600 mse_eps=0.1401
+[train-ddpm] ep6 step28620 mse_eps=0.1222
+[train-ddpm] ep6 step28640 mse_eps=0.2472
+[train-ddpm] ep6 step28660 mse_eps=0.0101
+[train-ddpm] ep6 step28680 mse_eps=0.1556
+[train-ddpm] ep6 step28700 mse_eps=0.1734
+[train-ddpm] ep6 step28720 mse_eps=0.0801
+[train-ddpm] ep6 step28740 mse_eps=0.0290
+[train-ddpm] ep6 step28760 mse_eps=0.3743
+[train-ddpm] ep6 step28780 mse_eps=0.0565
+[train-ddpm] ep6 step28800 mse_eps=0.0503
+[train-ddpm] ep6 step28820 mse_eps=0.1015
+[train-ddpm] ep6 step28840 mse_eps=0.0330
+[train-ddpm] ep6 step28860 mse_eps=0.1506
+[train-ddpm] ep6 step28880 mse_eps=0.1100
+[train-ddpm] ep6 step28900 mse_eps=0.1860
+[train-ddpm] ep6 step28920 mse_eps=0.0143
+[train-ddpm] ep6 step28940 mse_eps=0.0457
+[train-ddpm] ep6 step28960 mse_eps=0.2038
+[train-ddpm] ep6 step28980 mse_eps=0.0344
+[train-ddpm] ep6 step29000 mse_eps=0.0308
+[train-ddpm] ep6 step29020 mse_eps=0.0809
+[train-ddpm] ep6 step29040 mse_eps=0.1032
+[train-ddpm] ep6 step29060 mse_eps=0.0853
+[train-ddpm] ep6 step29080 mse_eps=0.0085
+[train-ddpm] ep6 step29100 mse_eps=0.0554
+[train-ddpm] ep6 step29120 mse_eps=0.2443
+[train-ddpm] ep6 step29140 mse_eps=0.0908
+[train-ddpm] ep6 step29160 mse_eps=0.1097
+[train-ddpm] ep6 step29180 mse_eps=0.1011
+[train-ddpm] ep6 step29200 mse_eps=0.0442
+[train-ddpm] ep6 step29220 mse_eps=0.1749
+[train-ddpm] ep6 step29240 mse_eps=0.0692
+[train-ddpm] ep6 step29260 mse_eps=0.3397
+[train-ddpm] ep6 step29280 mse_eps=0.0648
+[train-ddpm] ep6 step29300 mse_eps=0.0354
+[train-ddpm] ep6 step29320 mse_eps=0.1018
+[train-ddpm] ep6 step29340 mse_eps=0.0380
+[train-ddpm] ep6 step29360 mse_eps=0.0742
+[train-ddpm] ep6 step29380 mse_eps=0.0878
+[train-ddpm] ep6 step29400 mse_eps=0.0330
+[train-ddpm] ep6 step29420 mse_eps=0.1667
+[train-ddpm] ep6 step29440 mse_eps=0.0290
+[train-ddpm] ep6 step29460 mse_eps=0.1285
+[train-ddpm] ep6 step29480 mse_eps=0.4218
+[train-ddpm] ep6 step29500 mse_eps=0.0525
+[train-ddpm] ep6 step29520 mse_eps=0.3678
+[train-ddpm] ep6 step29540 mse_eps=0.0313
+[train-ddpm] ep6 step29560 mse_eps=0.0466
+[train-ddpm] ep6 step29580 mse_eps=0.1517
+[train-ddpm] ep6 step29600 mse_eps=0.4785
+[train-ddpm] ep6 step29620 mse_eps=0.0207
+[train-ddpm] ep6 step29640 mse_eps=0.0130
+[train-ddpm] ep6 step29660 mse_eps=0.4681
+[train-ddpm] ep6 step29680 mse_eps=0.0599
+[train-ddpm] ep6 step29700 mse_eps=0.0480
+[train-ddpm] ep6 step29720 mse_eps=0.2559
+[train-ddpm] ep6 step29740 mse_eps=0.0035
+[train-ddpm] ep6 step29760 mse_eps=0.0570
+[train-ddpm] ep6 step29780 mse_eps=0.1214
+[train-ddpm] ep6 step29800 mse_eps=0.0086
+[train-ddpm] ep6 step29820 mse_eps=0.0132
+[train-ddpm] ep6 step29840 mse_eps=0.1087
+[train-ddpm] ep6 step29860 mse_eps=0.1908
+[train-ddpm] ep6 step29880 mse_eps=0.0049
+[train-ddpm] ep6 step29900 mse_eps=0.0109
+[train-ddpm] ep6 step29920 mse_eps=0.0629
+[train-ddpm] ep6 step29940 mse_eps=0.0864
+[train-ddpm] ep6 step29960 mse_eps=0.0607
+[train-ddpm] ep6 step29980 mse_eps=0.2970
+[train-ddpm] ep6 step30000 mse_eps=0.1221
+[train-ddpm] ep6 step30020 mse_eps=0.0348
+[train-ddpm] ep6 step30040 mse_eps=0.0098
+[train-ddpm] ep6 step30060 mse_eps=0.3095
+[train-ddpm] ep6 step30080 mse_eps=0.0451
+[train-ddpm] ep6 step30100 mse_eps=0.0179
+[train-ddpm] ep6 step30120 mse_eps=0.0219
+[train-ddpm] ep6 step30140 mse_eps=0.5089
+[train-ddpm] ep6 step30160 mse_eps=0.0094
+[train-ddpm] ep6 step30180 mse_eps=0.0765
+[train-ddpm] ep6 step30200 mse_eps=0.0144
+[train-ddpm] ep6 step30220 mse_eps=0.2072
+[train-ddpm] ep6 step30240 mse_eps=0.0302
+[train-ddpm] ep6 step30260 mse_eps=0.0075
+[train-ddpm] ep6 step30280 mse_eps=0.0057
+[train-ddpm] ep6 step30300 mse_eps=0.0040
+[train-ddpm] ep6 step30320 mse_eps=0.0677
+[train-ddpm] ep6 step30340 mse_eps=0.0089
+[train-ddpm] ep6 step30360 mse_eps=0.0962
+[train-ddpm] ep6 step30380 mse_eps=0.1818
+[train-ddpm] ep6 step30400 mse_eps=0.0409
+[train-ddpm] ep6 step30420 mse_eps=0.0871
+[train-ddpm] ep6 step30440 mse_eps=0.0760
+[train-ddpm] ep6 step30460 mse_eps=0.1497
+[train-ddpm] ep6 step30480 mse_eps=0.0609
+[train-ddpm] ep6 step30500 mse_eps=0.0561
+[train-ddpm] ep6 step30520 mse_eps=0.1007
+[train-ddpm] ep6 step30540 mse_eps=0.1855
+[train-ddpm] ep6 step30560 mse_eps=0.2469
+[train-ddpm] ep6 step30580 mse_eps=0.0406
+[train-ddpm] ep6 step30600 mse_eps=0.0649
+[train-ddpm] ep6 step30620 mse_eps=0.0082
+[train-ddpm] ep6 step30640 mse_eps=0.0708
+[train-ddpm] ep6 step30660 mse_eps=0.0937
+[train-ddpm] ep6 step30680 mse_eps=0.0360
+[train-ddpm] ep6 step30700 mse_eps=0.0638
+[train-ddpm] ep6 step30720 mse_eps=0.1939
+[train-ddpm] ep6 step30740 mse_eps=0.1293
+[train-ddpm] ep6 step30760 mse_eps=0.1165
+[train-ddpm] ep6 step30780 mse_eps=0.1980
+[train-ddpm] ep6 step30800 mse_eps=0.0554
+[train-ddpm] ep6 step30820 mse_eps=0.1285
+[train-ddpm] ep6 step30840 mse_eps=0.0744
+[train-ddpm] ep6 step30860 mse_eps=0.0584
+[train-ddpm] ep6 step30880 mse_eps=0.1717
+[train-ddpm] ep6 step30900 mse_eps=0.1927
+[train-ddpm] ep6 step30920 mse_eps=0.1317
+[train-ddpm] ep6 step30940 mse_eps=0.1016
+[train-ddpm] ep6 step30960 mse_eps=0.2134
+[train-ddpm] ep6 step30980 mse_eps=0.0217
+[train-ddpm] ep6 step31000 mse_eps=0.2601
+[train-ddpm] ep6 step31020 mse_eps=0.1458
+[train-ddpm] ep6 step31040 mse_eps=0.0111
+[train-ddpm] ep6 step31060 mse_eps=0.0407
+[train-ddpm] ep6 step31080 mse_eps=0.0830
+[train-ddpm] ep6 step31100 mse_eps=0.2301
+[train-ddpm] ep6 step31120 mse_eps=0.0645
+[train-ddpm] ep6 step31140 mse_eps=0.0139
+[train-ddpm] ep6 step31160 mse_eps=0.1274
+[train-ddpm] ep6 step31180 mse_eps=0.0966
+[train-ddpm] ep6 step31200 mse_eps=0.0930
+[train-ddpm] ep6 step31220 mse_eps=0.2818
+[train-ddpm] ep6 step31240 mse_eps=0.3808
+[train-ddpm] ep6 step31260 mse_eps=0.0726
+[train-ddpm] ep6 step31280 mse_eps=0.1194
+[train-ddpm] ep6 step31300 mse_eps=0.1976
+[train-ddpm] ep6 step31320 mse_eps=0.0299
+[train-ddpm] ep6 step31340 mse_eps=0.1780
+[train-ddpm] ep6 step31360 mse_eps=0.0693
+[train-ddpm] ep6 step31380 mse_eps=0.0153
+[train-ddpm] ep6 step31400 mse_eps=0.1253
+[train-ddpm] ep6 step31420 mse_eps=0.0896
+[train-ddpm] ep6 step31440 mse_eps=0.0815
+[train-ddpm] ep6 step31460 mse_eps=0.0134
+[train-ddpm] ep6 step31480 mse_eps=0.1795
+[val-ddpm] ep6 loss=0.1175  x0_l1=0.2857  res_target_l1=0.0430  res_x0_l1=0.0203  final_from_x0_psnr=32.00dB
+[train-ddpm] saved epoch sample grid (sampling took 1.4s)
+[val-ddpm] new best loss=0.1175
+[train-ddpm] ep7 step31500 mse_eps=0.0849
+[train-ddpm] ep7 step31520 mse_eps=0.0278
+[train-ddpm] ep7 step31540 mse_eps=0.0808
+[train-ddpm] ep7 step31560 mse_eps=0.1124
+[train-ddpm] ep7 step31580 mse_eps=0.1443
+[train-ddpm] ep7 step31600 mse_eps=0.5263
+[train-ddpm] ep7 step31620 mse_eps=0.3459
+[train-ddpm] ep7 step31640 mse_eps=0.0950
+[train-ddpm] ep7 step31660 mse_eps=0.0433
+[train-ddpm] ep7 step31680 mse_eps=0.0438
+[train-ddpm] ep7 step31700 mse_eps=0.0046
+[train-ddpm] ep7 step31720 mse_eps=0.0639
+[train-ddpm] ep7 step31740 mse_eps=0.1339
+[train-ddpm] ep7 step31760 mse_eps=0.1267
+[train-ddpm] ep7 step31780 mse_eps=0.0790
+[train-ddpm] ep7 step31800 mse_eps=0.0606
+[train-ddpm] ep7 step31820 mse_eps=0.3609
+[train-ddpm] ep7 step31840 mse_eps=0.1289
+[train-ddpm] ep7 step31860 mse_eps=0.0853
+[train-ddpm] ep7 step31880 mse_eps=0.1563
+[train-ddpm] ep7 step31900 mse_eps=0.0440
+[train-ddpm] ep7 step31920 mse_eps=0.2032
+[train-ddpm] ep7 step31940 mse_eps=0.0123
+[train-ddpm] ep7 step31960 mse_eps=0.1422
+[train-ddpm] ep7 step31980 mse_eps=0.0067
+[train-ddpm] ep7 step32000 mse_eps=0.0631
+[train-ddpm] ep7 step32020 mse_eps=0.3476
+[train-ddpm] ep7 step32040 mse_eps=0.1362
+[train-ddpm] ep7 step32060 mse_eps=0.0712
+[train-ddpm] ep7 step32080 mse_eps=0.1681
+[train-ddpm] ep7 step32100 mse_eps=0.0718
+[train-ddpm] ep7 step32120 mse_eps=0.0403
+[train-ddpm] ep7 step32140 mse_eps=0.0436
+[train-ddpm] ep7 step32160 mse_eps=0.0439
+[train-ddpm] ep7 step32180 mse_eps=0.1314
+[train-ddpm] ep7 step32200 mse_eps=0.1873
+[train-ddpm] ep7 step32220 mse_eps=0.0241
+[train-ddpm] ep7 step32240 mse_eps=0.0199
+[train-ddpm] ep7 step32260 mse_eps=0.1488
+[train-ddpm] ep7 step32280 mse_eps=0.1328
+[train-ddpm] ep7 step32300 mse_eps=0.1340
+[train-ddpm] ep7 step32320 mse_eps=0.1040
+[train-ddpm] ep7 step32340 mse_eps=0.1599
+[train-ddpm] ep7 step32360 mse_eps=0.0946
+[train-ddpm] ep7 step32380 mse_eps=0.0891
+[train-ddpm] ep7 step32400 mse_eps=0.1096
+[train-ddpm] ep7 step32420 mse_eps=0.0470
+[train-ddpm] ep7 step32440 mse_eps=0.1073
+[train-ddpm] ep7 step32460 mse_eps=0.1929
+[train-ddpm] ep7 step32480 mse_eps=0.0225
+[train-ddpm] ep7 step32500 mse_eps=0.1269
+[train-ddpm] ep7 step32520 mse_eps=0.0338
+[train-ddpm] ep7 step32540 mse_eps=0.0813
+[train-ddpm] ep7 step32560 mse_eps=0.1838
+[train-ddpm] ep7 step32580 mse_eps=0.0149
+[train-ddpm] ep7 step32600 mse_eps=0.0222
+[train-ddpm] ep7 step32620 mse_eps=0.1928
+[train-ddpm] ep7 step32640 mse_eps=0.0565
+[train-ddpm] ep7 step32660 mse_eps=0.0173
+[train-ddpm] ep7 step32680 mse_eps=0.4082
+[train-ddpm] ep7 step32700 mse_eps=0.1163
+[train-ddpm] ep7 step32720 mse_eps=0.0686
+[train-ddpm] ep7 step32740 mse_eps=0.0167
+[train-ddpm] ep7 step32760 mse_eps=0.0158
+[train-ddpm] ep7 step32780 mse_eps=0.1276
+[train-ddpm] ep7 step32800 mse_eps=0.0093
+[train-ddpm] ep7 step32820 mse_eps=0.0517
+[train-ddpm] ep7 step32840 mse_eps=0.1183
+[train-ddpm] ep7 step32860 mse_eps=0.1345
+[train-ddpm] ep7 step32880 mse_eps=0.1196
+[train-ddpm] ep7 step32900 mse_eps=0.0135
+[train-ddpm] ep7 step32920 mse_eps=0.2414
+[train-ddpm] ep7 step32940 mse_eps=0.1351
+[train-ddpm] ep7 step32960 mse_eps=0.0489
+[train-ddpm] ep7 step32980 mse_eps=0.1459
+[train-ddpm] ep7 step33000 mse_eps=0.1103
+[train-ddpm] ep7 step33020 mse_eps=0.0679
+[train-ddpm] ep7 step33040 mse_eps=0.0566
+[train-ddpm] ep7 step33060 mse_eps=0.0697
+[train-ddpm] ep7 step33080 mse_eps=0.1981
+[train-ddpm] ep7 step33100 mse_eps=0.0408
+[train-ddpm] ep7 step33120 mse_eps=0.0983
+[train-ddpm] ep7 step33140 mse_eps=0.0740
+[train-ddpm] ep7 step33160 mse_eps=0.1347
+[train-ddpm] ep7 step33180 mse_eps=0.1304
+[train-ddpm] ep7 step33200 mse_eps=0.0379
+[train-ddpm] ep7 step33220 mse_eps=0.1464
+[train-ddpm] ep7 step33240 mse_eps=0.2665
+[train-ddpm] ep7 step33260 mse_eps=0.0247
+[train-ddpm] ep7 step33280 mse_eps=0.0640
+[train-ddpm] ep7 step33300 mse_eps=0.0338
+[train-ddpm] ep7 step33320 mse_eps=0.1833
+[train-ddpm] ep7 step33340 mse_eps=0.4897
+[train-ddpm] ep7 step33360 mse_eps=0.2022
+[train-ddpm] ep7 step33380 mse_eps=0.3029
+[train-ddpm] ep7 step33400 mse_eps=0.0647
+[train-ddpm] ep7 step33420 mse_eps=0.2413
+[train-ddpm] ep7 step33440 mse_eps=0.4828
+[train-ddpm] ep7 step33460 mse_eps=0.1102
+[train-ddpm] ep7 step33480 mse_eps=0.1629
+[train-ddpm] ep7 step33500 mse_eps=0.0607
+[train-ddpm] ep7 step33520 mse_eps=0.1663
+[train-ddpm] ep7 step33540 mse_eps=0.0170
+[train-ddpm] ep7 step33560 mse_eps=0.0246
+[train-ddpm] ep7 step33580 mse_eps=0.0171
+[train-ddpm] ep7 step33600 mse_eps=0.0240
+[train-ddpm] ep7 step33620 mse_eps=0.0325
+[train-ddpm] ep7 step33640 mse_eps=0.0380
+[train-ddpm] ep7 step33660 mse_eps=0.1309
+[train-ddpm] ep7 step33680 mse_eps=0.0136
+[train-ddpm] ep7 step33700 mse_eps=0.0743
+[train-ddpm] ep7 step33720 mse_eps=0.0750
+[train-ddpm] ep7 step33740 mse_eps=0.2224
+[train-ddpm] ep7 step33760 mse_eps=0.0870
+[train-ddpm] ep7 step33780 mse_eps=0.0089
+[train-ddpm] ep7 step33800 mse_eps=0.0038
+[train-ddpm] ep7 step33820 mse_eps=0.1329
+[train-ddpm] ep7 step33840 mse_eps=0.0588
+[train-ddpm] ep7 step33860 mse_eps=0.0587
+[train-ddpm] ep7 step33880 mse_eps=0.1190
+[train-ddpm] ep7 step33900 mse_eps=0.1639
+[train-ddpm] ep7 step33920 mse_eps=0.0164
+[train-ddpm] ep7 step33940 mse_eps=0.0787
+[train-ddpm] ep7 step33960 mse_eps=0.0938
+[train-ddpm] ep7 step33980 mse_eps=0.0501
+[train-ddpm] ep7 step34000 mse_eps=0.2267
+[train-ddpm] ep7 step34020 mse_eps=0.0845
+[train-ddpm] ep7 step34040 mse_eps=0.0143
+[train-ddpm] ep7 step34060 mse_eps=0.1174
+[train-ddpm] ep7 step34080 mse_eps=0.0073
+[train-ddpm] ep7 step34100 mse_eps=0.0079
+[train-ddpm] ep7 step34120 mse_eps=0.1188
+[train-ddpm] ep7 step34140 mse_eps=0.0421
+[train-ddpm] ep7 step34160 mse_eps=0.0162
+[train-ddpm] ep7 step34180 mse_eps=0.1355
+[train-ddpm] ep7 step34200 mse_eps=0.2778
+[train-ddpm] ep7 step34220 mse_eps=0.4901
+[train-ddpm] ep7 step34240 mse_eps=0.1331
+[train-ddpm] ep7 step34260 mse_eps=0.2008
+[train-ddpm] ep7 step34280 mse_eps=0.2840
+[train-ddpm] ep7 step34300 mse_eps=0.0147
+[train-ddpm] ep7 step34320 mse_eps=0.0805
+[train-ddpm] ep7 step34340 mse_eps=0.1195
+[train-ddpm] ep7 step34360 mse_eps=0.1263
+[train-ddpm] ep7 step34380 mse_eps=0.2533
+[train-ddpm] ep7 step34400 mse_eps=0.0190
+[train-ddpm] ep7 step34420 mse_eps=0.0065
+[train-ddpm] ep7 step34440 mse_eps=0.0071
+[train-ddpm] ep7 step34460 mse_eps=0.1462
+[train-ddpm] ep7 step34480 mse_eps=0.2598
+[train-ddpm] ep7 step34500 mse_eps=0.1562
+[train-ddpm] ep7 step34520 mse_eps=0.0213
+[train-ddpm] ep7 step34540 mse_eps=0.0369
+[train-ddpm] ep7 step34560 mse_eps=0.0043
+[train-ddpm] ep7 step34580 mse_eps=0.1154
+[train-ddpm] ep7 step34600 mse_eps=0.3907
+[train-ddpm] ep7 step34620 mse_eps=0.4536
+[train-ddpm] ep7 step34640 mse_eps=0.0078
+[train-ddpm] ep7 step34660 mse_eps=0.0955
+[train-ddpm] ep7 step34680 mse_eps=0.5612
+[train-ddpm] ep7 step34700 mse_eps=0.0694
+[train-ddpm] ep7 step34720 mse_eps=0.0931
+[train-ddpm] ep7 step34740 mse_eps=0.0082
+[train-ddpm] ep7 step34760 mse_eps=0.1567
+[train-ddpm] ep7 step34780 mse_eps=0.1339
+[train-ddpm] ep7 step34800 mse_eps=0.2224
+[train-ddpm] ep7 step34820 mse_eps=0.0093
+[train-ddpm] ep7 step34840 mse_eps=0.0497
+[train-ddpm] ep7 step34860 mse_eps=0.3677
+[train-ddpm] ep7 step34880 mse_eps=0.2132
+[train-ddpm] ep7 step34900 mse_eps=0.0335
+[train-ddpm] ep7 step34920 mse_eps=0.4139
+[train-ddpm] ep7 step34940 mse_eps=0.8112
+[train-ddpm] ep7 step34960 mse_eps=0.0446
+[train-ddpm] ep7 step34980 mse_eps=0.2290
+[train-ddpm] ep7 step35000 mse_eps=0.1076
+[train-ddpm] ep7 step35020 mse_eps=0.1166
+[train-ddpm] ep7 step35040 mse_eps=0.0569
+[train-ddpm] ep7 step35060 mse_eps=0.1166
+[train-ddpm] ep7 step35080 mse_eps=0.0883
+[train-ddpm] ep7 step35100 mse_eps=0.1875
+[train-ddpm] ep7 step35120 mse_eps=0.1794
+[train-ddpm] ep7 step35140 mse_eps=0.1923
+[train-ddpm] ep7 step35160 mse_eps=0.1059
+[train-ddpm] ep7 step35180 mse_eps=0.0902
+[train-ddpm] ep7 step35200 mse_eps=0.0791
+[train-ddpm] ep7 step35220 mse_eps=0.4654
+[train-ddpm] ep7 step35240 mse_eps=0.0150
+[train-ddpm] ep7 step35260 mse_eps=0.0314
+[train-ddpm] ep7 step35280 mse_eps=0.0442
+[train-ddpm] ep7 step35300 mse_eps=0.2578
+[train-ddpm] ep7 step35320 mse_eps=0.3012
+[train-ddpm] ep7 step35340 mse_eps=0.2194
+[train-ddpm] ep7 step35360 mse_eps=0.0425
+[train-ddpm] ep7 step35380 mse_eps=0.2357
+[train-ddpm] ep7 step35400 mse_eps=0.1083
+[train-ddpm] ep7 step35420 mse_eps=0.1308
+[train-ddpm] ep7 step35440 mse_eps=0.1265
+[train-ddpm] ep7 step35460 mse_eps=0.2666
+[train-ddpm] ep7 step35480 mse_eps=0.2050
+[train-ddpm] ep7 step35500 mse_eps=0.0872
+[train-ddpm] ep7 step35520 mse_eps=0.0191
+[train-ddpm] ep7 step35540 mse_eps=0.4015
+[train-ddpm] ep7 step35560 mse_eps=0.0732
+[train-ddpm] ep7 step35580 mse_eps=0.0835
+[train-ddpm] ep7 step35600 mse_eps=0.1144
+[train-ddpm] ep7 step35620 mse_eps=0.0914
+[train-ddpm] ep7 step35640 mse_eps=0.0410
+[train-ddpm] ep7 step35660 mse_eps=0.0230
+[train-ddpm] ep7 step35680 mse_eps=0.0178
+[train-ddpm] ep7 step35700 mse_eps=0.3643
+[train-ddpm] ep7 step35720 mse_eps=0.0475
+[train-ddpm] ep7 step35740 mse_eps=0.1289
+[train-ddpm] ep7 step35760 mse_eps=0.1091
+[train-ddpm] ep7 step35780 mse_eps=0.0248
+[train-ddpm] ep7 step35800 mse_eps=0.0946
+[train-ddpm] ep7 step35820 mse_eps=0.3487
+[train-ddpm] ep7 step35840 mse_eps=0.0494
+[train-ddpm] ep7 step35860 mse_eps=0.1560
+[train-ddpm] ep7 step35880 mse_eps=0.0153
+[train-ddpm] ep7 step35900 mse_eps=0.0041
+[train-ddpm] ep7 step35920 mse_eps=0.1426
+[train-ddpm] ep7 step35940 mse_eps=0.0556
+[train-ddpm] ep7 step35960 mse_eps=0.0282
+[train-ddpm] ep7 step35980 mse_eps=0.1403
+[val-ddpm] ep7 loss=0.1206  x0_l1=0.3175  res_target_l1=0.0434  res_x0_l1=0.0226  final_from_x0_psnr=31.96dB
+[train-ddpm] saved epoch sample grid (sampling took 1.4s)
+[train-ddpm] ep8 step36000 mse_eps=0.0738
+[train-ddpm] ep8 step36020 mse_eps=0.0105
+[train-ddpm] ep8 step36040 mse_eps=0.1190
+[train-ddpm] ep8 step36060 mse_eps=0.0146
+[train-ddpm] ep8 step36080 mse_eps=0.0446
+[train-ddpm] ep8 step36100 mse_eps=0.1304
+[train-ddpm] ep8 step36120 mse_eps=0.1528
+[train-ddpm] ep8 step36140 mse_eps=0.0722
+[train-ddpm] ep8 step36160 mse_eps=0.1202
+[train-ddpm] ep8 step36180 mse_eps=0.0242
+[train-ddpm] ep8 step36200 mse_eps=0.1301
+[train-ddpm] ep8 step36220 mse_eps=0.1174
+[train-ddpm] ep8 step36240 mse_eps=0.0761
+[train-ddpm] ep8 step36260 mse_eps=0.0975
+[train-ddpm] ep8 step36280 mse_eps=0.0516
+[train-ddpm] ep8 step36300 mse_eps=0.0413
+[train-ddpm] ep8 step36320 mse_eps=0.0555
+[train-ddpm] ep8 step36340 mse_eps=0.0929
+[train-ddpm] ep8 step36360 mse_eps=0.0739
+[train-ddpm] ep8 step36380 mse_eps=0.2958
+[train-ddpm] ep8 step36400 mse_eps=0.1439
+[train-ddpm] ep8 step36420 mse_eps=0.0201
+[train-ddpm] ep8 step36440 mse_eps=0.0234
+[train-ddpm] ep8 step36460 mse_eps=0.1771
+[train-ddpm] ep8 step36480 mse_eps=0.0677
+[train-ddpm] ep8 step36500 mse_eps=0.1209
+[train-ddpm] ep8 step36520 mse_eps=0.1367
+[train-ddpm] ep8 step36540 mse_eps=0.0280
+[train-ddpm] ep8 step36560 mse_eps=0.0139
+[train-ddpm] ep8 step36580 mse_eps=0.0327
+[train-ddpm] ep8 step36600 mse_eps=0.0554
+[train-ddpm] ep8 step36620 mse_eps=0.0584
+[train-ddpm] ep8 step36640 mse_eps=0.0804
+[train-ddpm] ep8 step36660 mse_eps=0.0033
+[train-ddpm] ep8 step36680 mse_eps=0.0585
+[train-ddpm] ep8 step36700 mse_eps=0.0054
+[train-ddpm] ep8 step36720 mse_eps=0.1463
+[train-ddpm] ep8 step36740 mse_eps=0.0527
+[train-ddpm] ep8 step36760 mse_eps=0.0048
+[train-ddpm] ep8 step36780 mse_eps=0.0281
+[train-ddpm] ep8 step36800 mse_eps=0.0139
+[train-ddpm] ep8 step36820 mse_eps=0.0915
+[train-ddpm] ep8 step36840 mse_eps=0.0547
+[train-ddpm] ep8 step36860 mse_eps=0.0110
+[train-ddpm] ep8 step36880 mse_eps=0.0392
+[train-ddpm] ep8 step36900 mse_eps=0.0370
+[train-ddpm] ep8 step36920 mse_eps=0.1199
+[train-ddpm] ep8 step36940 mse_eps=0.2648
+[train-ddpm] ep8 step36960 mse_eps=0.3836
+[train-ddpm] ep8 step36980 mse_eps=0.1151
+[train-ddpm] ep8 step37000 mse_eps=0.0226
+[train-ddpm] ep8 step37020 mse_eps=0.0280
+[train-ddpm] ep8 step37040 mse_eps=0.1211
+[train-ddpm] ep8 step37060 mse_eps=0.1275
+[train-ddpm] ep8 step37080 mse_eps=0.0480
+[train-ddpm] ep8 step37100 mse_eps=0.1228
+[train-ddpm] ep8 step37120 mse_eps=0.1123
+[train-ddpm] ep8 step37140 mse_eps=0.0351
+[train-ddpm] ep8 step37160 mse_eps=0.0571
+[train-ddpm] ep8 step37180 mse_eps=0.0131
+[train-ddpm] ep8 step37200 mse_eps=0.0595
+[train-ddpm] ep8 step37220 mse_eps=0.0522
+[train-ddpm] ep8 step37240 mse_eps=0.0023
+[train-ddpm] ep8 step37260 mse_eps=0.0262
+[train-ddpm] ep8 step37280 mse_eps=0.0958
+[train-ddpm] ep8 step37300 mse_eps=0.0928
+[train-ddpm] ep8 step37320 mse_eps=0.0587
+[train-ddpm] ep8 step37340 mse_eps=0.0675
+[train-ddpm] ep8 step37360 mse_eps=0.0268
+[train-ddpm] ep8 step37380 mse_eps=0.0515
+[train-ddpm] ep8 step37400 mse_eps=0.0171
+[train-ddpm] ep8 step37420 mse_eps=0.0211
+[train-ddpm] ep8 step37440 mse_eps=0.2285
+[train-ddpm] ep8 step37460 mse_eps=0.1686
+[train-ddpm] ep8 step37480 mse_eps=0.0188
+[train-ddpm] ep8 step37500 mse_eps=0.0254
+[train-ddpm] ep8 step37520 mse_eps=0.0213
+[train-ddpm] ep8 step37540 mse_eps=0.0047
+[train-ddpm] ep8 step37560 mse_eps=0.1335
+[train-ddpm] ep8 step37580 mse_eps=0.1398
+[train-ddpm] ep8 step37600 mse_eps=0.0837
+[train-ddpm] ep8 step37620 mse_eps=0.0439
+[train-ddpm] ep8 step37640 mse_eps=0.0769
+[train-ddpm] ep8 step37660 mse_eps=0.0112
+[train-ddpm] ep8 step37680 mse_eps=0.0637
+[train-ddpm] ep8 step37700 mse_eps=0.0206
+[train-ddpm] ep8 step37720 mse_eps=0.1537
+[train-ddpm] ep8 step37740 mse_eps=0.0336
+[train-ddpm] ep8 step37760 mse_eps=0.2550
+[train-ddpm] ep8 step37780 mse_eps=0.1090
+[train-ddpm] ep8 step37800 mse_eps=0.0263
+[train-ddpm] ep8 step37820 mse_eps=0.5683
+[train-ddpm] ep8 step37840 mse_eps=0.0731
+[train-ddpm] ep8 step37860 mse_eps=0.2261
+[train-ddpm] ep8 step37880 mse_eps=0.0042
+[train-ddpm] ep8 step37900 mse_eps=0.1423
+[train-ddpm] ep8 step37920 mse_eps=0.0645
+[train-ddpm] ep8 step37940 mse_eps=0.0074
+[train-ddpm] ep8 step37960 mse_eps=0.1373
+[train-ddpm] ep8 step37980 mse_eps=0.3171
+[train-ddpm] ep8 step38000 mse_eps=0.0297
+[train-ddpm] ep8 step38020 mse_eps=0.0125
+[train-ddpm] ep8 step38040 mse_eps=0.1043
+[train-ddpm] ep8 step38060 mse_eps=0.1184
+[train-ddpm] ep8 step38080 mse_eps=0.0958
+[train-ddpm] ep8 step38100 mse_eps=0.0383
+[train-ddpm] ep8 step38120 mse_eps=0.1536
+[train-ddpm] ep8 step38140 mse_eps=0.0609
+[train-ddpm] ep8 step38160 mse_eps=0.0689
+[train-ddpm] ep8 step38180 mse_eps=0.0036
+[train-ddpm] ep8 step38200 mse_eps=0.0975
+[train-ddpm] ep8 step38220 mse_eps=0.0915
+[train-ddpm] ep8 step38240 mse_eps=0.0853
+[train-ddpm] ep8 step38260 mse_eps=0.0582
+[train-ddpm] ep8 step38280 mse_eps=0.0729
+[train-ddpm] ep8 step38300 mse_eps=0.1504
+[train-ddpm] ep8 step38320 mse_eps=0.0058
+[train-ddpm] ep8 step38340 mse_eps=0.1476
+[train-ddpm] ep8 step38360 mse_eps=0.0467
+[train-ddpm] ep8 step38380 mse_eps=0.0372
+[train-ddpm] ep8 step38400 mse_eps=0.1118
+[train-ddpm] ep8 step38420 mse_eps=0.0317
+[train-ddpm] ep8 step38440 mse_eps=0.0827
+[train-ddpm] ep8 step38460 mse_eps=0.1534
+[train-ddpm] ep8 step38480 mse_eps=0.4558
+[train-ddpm] ep8 step38500 mse_eps=0.0584
+[train-ddpm] ep8 step38520 mse_eps=0.1292
+[train-ddpm] ep8 step38540 mse_eps=0.6591
+[train-ddpm] ep8 step38560 mse_eps=0.0654
+[train-ddpm] ep8 step38580 mse_eps=0.4647
+[train-ddpm] ep8 step38600 mse_eps=0.0358
+[train-ddpm] ep8 step38620 mse_eps=0.0419
+[train-ddpm] ep8 step38640 mse_eps=0.1286
+[train-ddpm] ep8 step38660 mse_eps=0.1204
+[train-ddpm] ep8 step38680 mse_eps=0.0096
+[train-ddpm] ep8 step38700 mse_eps=0.0599
+[train-ddpm] ep8 step38720 mse_eps=0.0679
+[train-ddpm] ep8 step38740 mse_eps=0.0496
+[train-ddpm] ep8 step38760 mse_eps=0.1843
+[train-ddpm] ep8 step38780 mse_eps=0.0197
+[train-ddpm] ep8 step38800 mse_eps=0.0524
+[train-ddpm] ep8 step38820 mse_eps=0.0954
+[train-ddpm] ep8 step38840 mse_eps=0.1266
+[train-ddpm] ep8 step38860 mse_eps=0.0311
+[train-ddpm] ep8 step38880 mse_eps=0.0562
+[train-ddpm] ep8 step38900 mse_eps=0.0103
+[train-ddpm] ep8 step38920 mse_eps=0.1507
+[train-ddpm] ep8 step38940 mse_eps=0.0588
+[train-ddpm] ep8 step38960 mse_eps=0.1065
+[train-ddpm] ep8 step38980 mse_eps=0.0421
+[train-ddpm] ep8 step39000 mse_eps=0.0675
+[train-ddpm] ep8 step39020 mse_eps=0.0473
+[train-ddpm] ep8 step39040 mse_eps=0.0140
+[train-ddpm] ep8 step39060 mse_eps=0.1496
+[train-ddpm] ep8 step39080 mse_eps=0.0945
+[train-ddpm] ep8 step39100 mse_eps=0.1775
+[train-ddpm] ep8 step39120 mse_eps=0.0713
+[train-ddpm] ep8 step39140 mse_eps=0.1265
+[train-ddpm] ep8 step39160 mse_eps=0.1855
+[train-ddpm] ep8 step39180 mse_eps=0.0037
+[train-ddpm] ep8 step39200 mse_eps=0.0877
+[train-ddpm] ep8 step39220 mse_eps=0.0965
+[train-ddpm] ep8 step39240 mse_eps=0.0474
+[train-ddpm] ep8 step39260 mse_eps=0.0390
+[train-ddpm] ep8 step39280 mse_eps=0.0062
+[train-ddpm] ep8 step39300 mse_eps=0.0743
+[train-ddpm] ep8 step39320 mse_eps=0.0739
+[train-ddpm] ep8 step39340 mse_eps=0.0059
+[train-ddpm] ep8 step39360 mse_eps=0.0696
+[train-ddpm] ep8 step39380 mse_eps=0.1147
+[train-ddpm] ep8 step39400 mse_eps=0.0182
+[train-ddpm] ep8 step39420 mse_eps=0.1088
+[train-ddpm] ep8 step39440 mse_eps=0.0440
+[train-ddpm] ep8 step39460 mse_eps=0.2804
+[train-ddpm] ep8 step39480 mse_eps=0.0673
+[train-ddpm] ep8 step39500 mse_eps=0.0201
+[train-ddpm] ep8 step39520 mse_eps=0.0544
+[train-ddpm] ep8 step39540 mse_eps=0.2116
+[train-ddpm] ep8 step39560 mse_eps=0.0269
+[train-ddpm] ep8 step39580 mse_eps=0.0370
+[train-ddpm] ep8 step39600 mse_eps=0.3091
+[train-ddpm] ep8 step39620 mse_eps=0.2728
+[train-ddpm] ep8 step39640 mse_eps=0.0709
+[train-ddpm] ep8 step39660 mse_eps=0.1015
+[train-ddpm] ep8 step39680 mse_eps=0.0391
+[train-ddpm] ep8 step39700 mse_eps=0.1648
+[train-ddpm] ep8 step39720 mse_eps=0.0996
+[train-ddpm] ep8 step39740 mse_eps=0.0613
+[train-ddpm] ep8 step39760 mse_eps=0.1274
+[train-ddpm] ep8 step39780 mse_eps=0.0905
+[train-ddpm] ep8 step39800 mse_eps=0.3851
+[train-ddpm] ep8 step39820 mse_eps=0.1423
+[train-ddpm] ep8 step39840 mse_eps=0.0543
+[train-ddpm] ep8 step39860 mse_eps=0.1975
+[train-ddpm] ep8 step39880 mse_eps=0.0040
+[train-ddpm] ep8 step39900 mse_eps=0.0182
+[train-ddpm] ep8 step39920 mse_eps=0.0695
+[train-ddpm] ep8 step39940 mse_eps=0.0169
+[train-ddpm] ep8 step39960 mse_eps=0.1800
+[train-ddpm] ep8 step39980 mse_eps=0.0480
+[train-ddpm] ep8 step40000 mse_eps=0.1840
+[train-ddpm] ep8 step40020 mse_eps=0.0964
+[train-ddpm] ep8 step40040 mse_eps=0.0910
+[train-ddpm] ep8 step40060 mse_eps=0.2781
+[train-ddpm] ep8 step40080 mse_eps=0.1560
+[train-ddpm] ep8 step40100 mse_eps=0.0352
+[train-ddpm] ep8 step40120 mse_eps=0.0836
+[train-ddpm] ep8 step40140 mse_eps=0.2818
+[train-ddpm] ep8 step40160 mse_eps=0.0157
+[train-ddpm] ep8 step40180 mse_eps=0.0269
+[train-ddpm] ep8 step40200 mse_eps=0.2133
+[train-ddpm] ep8 step40220 mse_eps=0.2425
+[train-ddpm] ep8 step40240 mse_eps=0.0815
+[train-ddpm] ep8 step40260 mse_eps=0.1129
+[train-ddpm] ep8 step40280 mse_eps=0.0448
+[train-ddpm] ep8 step40300 mse_eps=0.5262
+[train-ddpm] ep8 step40320 mse_eps=0.2408
+[train-ddpm] ep8 step40340 mse_eps=0.2246
+[train-ddpm] ep8 step40360 mse_eps=0.0857
+[train-ddpm] ep8 step40380 mse_eps=0.1424
+[train-ddpm] ep8 step40400 mse_eps=0.1550
+[train-ddpm] ep8 step40420 mse_eps=0.0420
+[train-ddpm] ep8 step40440 mse_eps=0.1072
+[train-ddpm] ep8 step40460 mse_eps=0.0929
+[train-ddpm] ep8 step40480 mse_eps=0.1794
+[val-ddpm] ep8 loss=0.1228  x0_l1=0.9885  res_target_l1=0.0429  res_x0_l1=0.0703  final_from_x0_psnr=31.96dB
+[train-ddpm] saved epoch sample grid (sampling took 1.4s)
+[train-ddpm] ep9 step40500 mse_eps=0.1648
+[train-ddpm] ep9 step40520 mse_eps=0.0214
+[train-ddpm] ep9 step40540 mse_eps=0.0636
+[train-ddpm] ep9 step40560 mse_eps=0.2694
+[train-ddpm] ep9 step40580 mse_eps=0.0089
+[train-ddpm] ep9 step40600 mse_eps=0.0978
+[train-ddpm] ep9 step40620 mse_eps=0.4128
+[train-ddpm] ep9 step40640 mse_eps=0.1666
+[train-ddpm] ep9 step40660 mse_eps=0.1980
+[train-ddpm] ep9 step40680 mse_eps=0.0318
+[train-ddpm] ep9 step40700 mse_eps=0.0596
+[train-ddpm] ep9 step40720 mse_eps=0.0352
+[train-ddpm] ep9 step40740 mse_eps=0.1517
+[train-ddpm] ep9 step40760 mse_eps=0.5021
+[train-ddpm] ep9 step40780 mse_eps=0.0461
+[train-ddpm] ep9 step40800 mse_eps=0.2813
+[train-ddpm] ep9 step40820 mse_eps=0.6333
+[train-ddpm] ep9 step40840 mse_eps=0.0284
+[train-ddpm] ep9 step40860 mse_eps=0.0212
+[train-ddpm] ep9 step40880 mse_eps=0.1554
+[train-ddpm] ep9 step40900 mse_eps=0.1319
+[train-ddpm] ep9 step40920 mse_eps=0.0266
+[train-ddpm] ep9 step40940 mse_eps=0.1211
+[train-ddpm] ep9 step40960 mse_eps=0.0213
+[train-ddpm] ep9 step40980 mse_eps=0.0063
+[train-ddpm] ep9 step41000 mse_eps=0.0454
+[train-ddpm] ep9 step41020 mse_eps=0.0213
+[train-ddpm] ep9 step41040 mse_eps=0.0453
+[train-ddpm] ep9 step41060 mse_eps=0.0410
+[train-ddpm] ep9 step41080 mse_eps=0.0394
+[train-ddpm] ep9 step41100 mse_eps=0.0369
+[train-ddpm] ep9 step41120 mse_eps=0.0410
+[train-ddpm] ep9 step41140 mse_eps=0.0737
+[train-ddpm] ep9 step41160 mse_eps=0.0744
+[train-ddpm] ep9 step41180 mse_eps=0.3190
+[train-ddpm] ep9 step41200 mse_eps=0.2595
+[train-ddpm] ep9 step41220 mse_eps=0.3507
+[train-ddpm] ep9 step41240 mse_eps=0.4331
+[train-ddpm] ep9 step41260 mse_eps=0.0271
+[train-ddpm] ep9 step41280 mse_eps=0.1656
+[train-ddpm] ep9 step41300 mse_eps=0.0359
+[train-ddpm] ep9 step41320 mse_eps=0.1194
+[train-ddpm] ep9 step41340 mse_eps=0.0130
+[train-ddpm] ep9 step41360 mse_eps=0.3260
+[train-ddpm] ep9 step41380 mse_eps=0.0658
+[train-ddpm] ep9 step41400 mse_eps=0.3442
+[train-ddpm] ep9 step41420 mse_eps=0.0536
+[train-ddpm] ep9 step41440 mse_eps=0.0980
+[train-ddpm] ep9 step41460 mse_eps=0.0326
+[train-ddpm] ep9 step41480 mse_eps=0.0724
+[train-ddpm] ep9 step41500 mse_eps=0.5181
+[train-ddpm] ep9 step41520 mse_eps=0.1127
+[train-ddpm] ep9 step41540 mse_eps=0.1841
+[train-ddpm] ep9 step41560 mse_eps=0.1891
+[train-ddpm] ep9 step41580 mse_eps=0.0382
+[train-ddpm] ep9 step41600 mse_eps=0.0645
+[train-ddpm] ep9 step41620 mse_eps=0.0961
+[train-ddpm] ep9 step41640 mse_eps=0.0530
+[train-ddpm] ep9 step41660 mse_eps=0.0231
+[train-ddpm] ep9 step41680 mse_eps=0.1616
+[train-ddpm] ep9 step41700 mse_eps=0.0612
+[train-ddpm] ep9 step41720 mse_eps=0.0637
+[train-ddpm] ep9 step41740 mse_eps=0.0221
+[train-ddpm] ep9 step41760 mse_eps=0.1998
+[train-ddpm] ep9 step41780 mse_eps=0.0338
+[train-ddpm] ep9 step41800 mse_eps=0.1953
+[train-ddpm] ep9 step41820 mse_eps=0.0752
+[train-ddpm] ep9 step41840 mse_eps=0.3641
+[train-ddpm] ep9 step41860 mse_eps=0.0979
+[train-ddpm] ep9 step41880 mse_eps=0.0337
+[train-ddpm] ep9 step41900 mse_eps=0.0690
+[train-ddpm] ep9 step41920 mse_eps=0.0517
+[train-ddpm] ep9 step41940 mse_eps=0.0196
+[train-ddpm] ep9 step41960 mse_eps=0.0451
+[train-ddpm] ep9 step41980 mse_eps=0.7751
+[train-ddpm] ep9 step42000 mse_eps=0.5848
+[train-ddpm] ep9 step42020 mse_eps=0.0450
+[train-ddpm] ep9 step42040 mse_eps=0.5155
+[train-ddpm] ep9 step42060 mse_eps=0.5358
+[train-ddpm] ep9 step42080 mse_eps=0.0183
+[train-ddpm] ep9 step42100 mse_eps=0.0327
+[train-ddpm] ep9 step42120 mse_eps=0.0784
+[train-ddpm] ep9 step42140 mse_eps=0.1217
+[train-ddpm] ep9 step42160 mse_eps=0.0554
+[train-ddpm] ep9 step42180 mse_eps=0.0499
+[train-ddpm] ep9 step42200 mse_eps=0.1373
+[train-ddpm] ep9 step42220 mse_eps=0.1910
+[train-ddpm] ep9 step42240 mse_eps=0.3315
+[train-ddpm] ep9 step42260 mse_eps=0.1901
+[train-ddpm] ep9 step42280 mse_eps=0.0759
+[train-ddpm] ep9 step42300 mse_eps=0.4659
+[train-ddpm] ep9 step42320 mse_eps=0.0619
+[train-ddpm] ep9 step42340 mse_eps=0.0646
+[train-ddpm] ep9 step42360 mse_eps=0.0325
+[train-ddpm] ep9 step42380 mse_eps=0.1147
+[train-ddpm] ep9 step42400 mse_eps=0.5245
+[train-ddpm] ep9 step42420 mse_eps=0.0466
+[train-ddpm] ep9 step42440 mse_eps=0.3222
+[train-ddpm] ep9 step42460 mse_eps=0.0773
+[train-ddpm] ep9 step42480 mse_eps=0.1446
+[train-ddpm] ep9 step42500 mse_eps=0.2180
+[train-ddpm] ep9 step42520 mse_eps=0.0302
+[train-ddpm] ep9 step42540 mse_eps=0.0144
+[train-ddpm] ep9 step42560 mse_eps=0.0581
+[train-ddpm] ep9 step42580 mse_eps=0.0919
+[train-ddpm] ep9 step42600 mse_eps=0.0795
+[train-ddpm] ep9 step42620 mse_eps=0.1040
+[train-ddpm] ep9 step42640 mse_eps=0.1045
+[train-ddpm] ep9 step42660 mse_eps=0.0309
+[train-ddpm] ep9 step42680 mse_eps=0.0371
+[train-ddpm] ep9 step42700 mse_eps=0.0833
+[train-ddpm] ep9 step42720 mse_eps=0.1909
+[train-ddpm] ep9 step42740 mse_eps=0.0969
+[train-ddpm] ep9 step42760 mse_eps=0.1682
+[train-ddpm] ep9 step42780 mse_eps=0.3852
+[train-ddpm] ep9 step42800 mse_eps=0.0706
+[train-ddpm] ep9 step42820 mse_eps=0.0202
+[train-ddpm] ep9 step42840 mse_eps=0.2160
+[train-ddpm] ep9 step42860 mse_eps=0.0761
+[train-ddpm] ep9 step42880 mse_eps=0.1095
+[train-ddpm] ep9 step42900 mse_eps=0.1023
+[train-ddpm] ep9 step42920 mse_eps=0.1295
+[train-ddpm] ep9 step42940 mse_eps=0.0295
+[train-ddpm] ep9 step42960 mse_eps=0.1541
+[train-ddpm] ep9 step42980 mse_eps=0.0580
+[train-ddpm] ep9 step43000 mse_eps=0.0639
+[train-ddpm] ep9 step43020 mse_eps=0.0343
+[train-ddpm] ep9 step43040 mse_eps=0.1368
+[train-ddpm] ep9 step43060 mse_eps=0.0666
+[train-ddpm] ep9 step43080 mse_eps=0.0451
+[train-ddpm] ep9 step43100 mse_eps=0.3117
+[train-ddpm] ep9 step43120 mse_eps=0.0580
+[train-ddpm] ep9 step43140 mse_eps=0.3585
+[train-ddpm] ep9 step43160 mse_eps=0.0209
+[train-ddpm] ep9 step43180 mse_eps=0.3093
+[train-ddpm] ep9 step43200 mse_eps=0.0655
+[train-ddpm] ep9 step43220 mse_eps=0.0386
+[train-ddpm] ep9 step43240 mse_eps=0.0449
+[train-ddpm] ep9 step43260 mse_eps=0.0236
+[train-ddpm] ep9 step43280 mse_eps=0.1683
+[train-ddpm] ep9 step43300 mse_eps=0.0303
+[train-ddpm] ep9 step43320 mse_eps=0.0236
+[train-ddpm] ep9 step43340 mse_eps=0.1348
+[train-ddpm] ep9 step43360 mse_eps=0.0200
+[train-ddpm] ep9 step43380 mse_eps=0.0107
+[train-ddpm] ep9 step43400 mse_eps=0.0520
+[train-ddpm] ep9 step43420 mse_eps=0.0216
+[train-ddpm] ep9 step43440 mse_eps=0.0766
+[train-ddpm] ep9 step43460 mse_eps=0.1217
+[train-ddpm] ep9 step43480 mse_eps=0.1429
+[train-ddpm] ep9 step43500 mse_eps=0.1570
+[train-ddpm] ep9 step43520 mse_eps=0.3972
+[train-ddpm] ep9 step43540 mse_eps=0.0163
+[train-ddpm] ep9 step43560 mse_eps=0.0825
+[train-ddpm] ep9 step43580 mse_eps=0.0916
+[train-ddpm] ep9 step43600 mse_eps=0.2471
+[train-ddpm] ep9 step43620 mse_eps=0.0491
+[train-ddpm] ep9 step43640 mse_eps=0.2772
+[train-ddpm] ep9 step43660 mse_eps=0.0195
+[train-ddpm] ep9 step43680 mse_eps=0.0243
+[train-ddpm] ep9 step43700 mse_eps=0.1208
+[train-ddpm] ep9 step43720 mse_eps=0.0589
+[train-ddpm] ep9 step43740 mse_eps=0.0442
+[train-ddpm] ep9 step43760 mse_eps=0.0878
+[train-ddpm] ep9 step43780 mse_eps=0.0323
+[train-ddpm] ep9 step43800 mse_eps=0.0175
+[train-ddpm] ep9 step43820 mse_eps=0.0293
+[train-ddpm] ep9 step43840 mse_eps=0.0433
+[train-ddpm] ep9 step43860 mse_eps=0.0159
+[train-ddpm] ep9 step43880 mse_eps=0.0432
+[train-ddpm] ep9 step43900 mse_eps=0.1459
+[train-ddpm] ep9 step43920 mse_eps=0.0518
+[train-ddpm] ep9 step43940 mse_eps=0.4867
+[train-ddpm] ep9 step43960 mse_eps=0.0434
+[train-ddpm] ep9 step43980 mse_eps=0.0662
+[train-ddpm] ep9 step44000 mse_eps=0.0997
+[train-ddpm] ep9 step44020 mse_eps=0.0632
+[train-ddpm] ep9 step44040 mse_eps=0.0097
+[train-ddpm] ep9 step44060 mse_eps=0.3509
+[train-ddpm] ep9 step44080 mse_eps=0.3171
+[train-ddpm] ep9 step44100 mse_eps=0.0169
+[train-ddpm] ep9 step44120 mse_eps=0.0166
+[train-ddpm] ep9 step44140 mse_eps=0.0621
+[train-ddpm] ep9 step44160 mse_eps=0.0222
+[train-ddpm] ep9 step44180 mse_eps=0.0555
+[train-ddpm] ep9 step44200 mse_eps=0.0305
+[train-ddpm] ep9 step44220 mse_eps=0.0987
+[train-ddpm] ep9 step44240 mse_eps=0.3160
+[train-ddpm] ep9 step44260 mse_eps=0.5504
+[train-ddpm] ep9 step44280 mse_eps=0.0639
+[train-ddpm] ep9 step44300 mse_eps=0.0816
+[train-ddpm] ep9 step44320 mse_eps=0.0554
+[train-ddpm] ep9 step44340 mse_eps=0.1268
+[train-ddpm] ep9 step44360 mse_eps=0.0783
+[train-ddpm] ep9 step44380 mse_eps=0.1181
+[train-ddpm] ep9 step44400 mse_eps=0.0150
+[train-ddpm] ep9 step44420 mse_eps=0.2266
+[train-ddpm] ep9 step44440 mse_eps=0.1716
+[train-ddpm] ep9 step44460 mse_eps=0.2639
+[train-ddpm] ep9 step44480 mse_eps=0.0743
+[train-ddpm] ep9 step44500 mse_eps=0.1007
+[train-ddpm] ep9 step44520 mse_eps=0.0203
+[train-ddpm] ep9 step44540 mse_eps=0.0027
+[train-ddpm] ep9 step44560 mse_eps=0.0602
+[train-ddpm] ep9 step44580 mse_eps=0.1296
+[train-ddpm] ep9 step44600 mse_eps=0.0509
+[train-ddpm] ep9 step44620 mse_eps=0.0427
+[train-ddpm] ep9 step44640 mse_eps=0.0466
+[train-ddpm] ep9 step44660 mse_eps=0.0044
+[train-ddpm] ep9 step44680 mse_eps=0.0384
+[train-ddpm] ep9 step44700 mse_eps=0.1427
+[train-ddpm] ep9 step44720 mse_eps=0.0214
+[train-ddpm] ep9 step44740 mse_eps=0.0884
+[train-ddpm] ep9 step44760 mse_eps=0.0043
+[train-ddpm] ep9 step44780 mse_eps=0.0127
+[train-ddpm] ep9 step44800 mse_eps=0.0640
+[train-ddpm] ep9 step44820 mse_eps=0.0477
+[train-ddpm] ep9 step44840 mse_eps=0.0263
+[train-ddpm] ep9 step44860 mse_eps=0.3340
+[train-ddpm] ep9 step44880 mse_eps=0.0750
+[train-ddpm] ep9 step44900 mse_eps=0.1418
+[train-ddpm] ep9 step44920 mse_eps=0.0986
+[train-ddpm] ep9 step44940 mse_eps=0.1237
+[train-ddpm] ep9 step44960 mse_eps=0.3111
+[train-ddpm] ep9 step44980 mse_eps=0.0862
+[val-ddpm] ep9 loss=0.1083  x0_l1=2.0607  res_target_l1=0.0431  res_x0_l1=0.1466  final_from_x0_psnr=31.87dB
+[train-ddpm] saved epoch sample grid (sampling took 1.4s)
+[val-ddpm] new best loss=0.1083
+[train-ddpm] plots: {'loss_curve': True, 'metric_curves': True, 'degradation_type_distribution': True}
+[train-ddpm] done in 3318.6s. outputs in outputs/ddpm_residual_hard_10k_b6base
+===== EVAL HARD RESIDUAL DDPM =====
+[eval-ddpm] residual mode: loaded frozen base U-Net from outputs/unet_hard_50k_b6w8/ckpt_best.pt
+[eval-ddpm] residual_scale=0.07116  residual_clip=0.1000  default_residual_blend=0.250  eval_blends=[0.0, 0.1, 0.25, 0.5, 1.0]  sampling_mode=ddim
+[eval-ddpm] device=cuda  mode=residual  samples=512  ckpt=outputs/ddpm_residual_hard_10k_b6base/ckpt_best.pt  sampling_steps=50
+ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:   8%|▊         | 4/50 [00:00<00:01, 38.95it/s]ddim-sample:  34%|███▍      | 17/50 [00:00<00:00, 90.19it/s]ddim-sample:  60%|██████    | 30/50 [00:00<00:00, 107.74it/s]ddim-sample:  88%|████████▊ | 44/50 [00:00<00:00, 117.97it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.75it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.45it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.33it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.21it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.34it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.29it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.52it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.44it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.20it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.55it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.38it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.68it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.08it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.01it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 126.70it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.64it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.64it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.81it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.48it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.23it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.68it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.78it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.57it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.06it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 106.95it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.02it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.33it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.74it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.40it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.91it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 106.95it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 122.95it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 126.60it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.52it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.40it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.40it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.13it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.10it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.85it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.24it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.43it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.46it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.46it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.20it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.57it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.85it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.63it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.95it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.51it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.20it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.76it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 109.44it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 124.19it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.99it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.63it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.38it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.20it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.79it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.58it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.64it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 106.49it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 122.55it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 126.68it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.54it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.52it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.36it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.72it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.28it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.96it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.61it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.53it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.54it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.33it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.23it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.98it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.24it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.10it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.40it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.33it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.25it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.07it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 106.90it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 122.98it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 126.66it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.52it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.37it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.83it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.42it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.54it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.73it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.05it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.13it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.15it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.49it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.28it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.24it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.28it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.12it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.64it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 106.99it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 122.92it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.17it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.48it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.39it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.37it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.15it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 122.98it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.31it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.41it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.27it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.27it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.52it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.53it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.21it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.60it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.40it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.04it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.73it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.42it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.86it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.36it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.39it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.28it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.63it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.65it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.17it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.34it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.12it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.60it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.25it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.25it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.20it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.34it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.24it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.17it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.20it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.20it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.16it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.20it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.14it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.08it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.28it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.30it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.28it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.08it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 122.97it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.92it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.45it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.47it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.29it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 106.96it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.02it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.08it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.28it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.50it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.45it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.26it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.15it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.68it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.30it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.41it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.15it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.15it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.37it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.02it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 106.90it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 122.93it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.82it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 106.92it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 122.95it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.86it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.21it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.06it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.15it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.50it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.19it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.33it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.30it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 122.86it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.12it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.49it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.46it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.16it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.54it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.41it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.44it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.55it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.59it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.49it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.25it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.36it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.86it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.14it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.25it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.75it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.23it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.32it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.50it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.25it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.29it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.19it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.38it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.16it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.16it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.18it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.12it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.75it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.66it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.66it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.55it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.33it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.24it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.19it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.20it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.25it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.90it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.10it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.24it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.24it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.10it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.07it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.03it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.36it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.33it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.27it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.59it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.41it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.44it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.13it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.15it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.16it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.56it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.23it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.28it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.35it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.29it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.38it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.07it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.08it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.06it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.20it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.14it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.56it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.25it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.07it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.69it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.10it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 122.96it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.86it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.37it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.14it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.43it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.37it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.15it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.13it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.40it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.42it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.52it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 106.79it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.07it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.07it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.11it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.40it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.23it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.80it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.51it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.51it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.24it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.17it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.23it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.49it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.45it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.47it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 106.97it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.18it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.02it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.48it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.50it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.17it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 106.95it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.15it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.06it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.05it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.34it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.33it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 106.94it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.17it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.21it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.19it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.12it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.91it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.25it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.14it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.10it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.20it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 122.94it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.78it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 106.99it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 122.80it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.99it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 106.72it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 122.80it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.85it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 106.81it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 122.84it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.73it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 106.88it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 122.81it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.84it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.58it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.47it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.47it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.00it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.16it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.29it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.46it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.19it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.31it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 106.90it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 122.78it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.04it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.09it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.21it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.21it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.44it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.46it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.48it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.38it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.35it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.20it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.46it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.48it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.46it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.48it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.51it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.42it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.53it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.36it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.14it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.13it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.02it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.93it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.68it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.55it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.45it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.10it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 122.98it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.75it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.93it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.73it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.60it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 106.90it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.18it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.24it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.41it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.37it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.34it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.90it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.77it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.17it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.45it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.49it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.56it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.50it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.38it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.44it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.63it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.59it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.69it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 108.06it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.85it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.40it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.65it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.66it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.77it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.16it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.18it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.37it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.64it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.37it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.44it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.55it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.41it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.86it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 106.98it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 122.85it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.97it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.69it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.60it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.71it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.79it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.71it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.76it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.08it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 122.98it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.19it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.80it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.57it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.16it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.45it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.54it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.54it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.53it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.36it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.46it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.77it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.45it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.51it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.38it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.39it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.45it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.80it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.75it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.64it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.12it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.21it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.13it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.40it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.53it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.44it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.18it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.18it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.16it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.51it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.52it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.53it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.47it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.45it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.46it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.43it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.54it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.55it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.34it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.09it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.10it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.72it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.70it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.69it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.60it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.53it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.55it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.47it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.37it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.43it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.24it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.20it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.07it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.72it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.70it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.70it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.77it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.75it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.65it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.39it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.32it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.25it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.39it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.51it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.62it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.40it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.57it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.57it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.66it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.81it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.73it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.48it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.32it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.25it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 108.04it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.97it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.88it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.10it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.30it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.50it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.66it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.62it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.68it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.41it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.40it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.49it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.53it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.46it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.54it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.70it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.70it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.63it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.37it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.42it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.45it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.78it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.67it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.92it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.77it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.77it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.74it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.68it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.57it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.62it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.31it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.30it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.23it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.94it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.78it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.82it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.83it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.88it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.73it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 109.31it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 124.27it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.85it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.08it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.11it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.25it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.30it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.12it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.28it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.51it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.44it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.45it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.19it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.18it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.87it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.46it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.46it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.47it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.19it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.23it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.18it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.68it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.58it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.47it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.34it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.06it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.14it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.54it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.51it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.45it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.68it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.60it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.58it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.82it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.73it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.77it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.09it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.27it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.23it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.05it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 122.90it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.62it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.51it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.49it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.46it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.14it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.12it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.12it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.11it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.15it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.17it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.66it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.63it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.56it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.12it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.13it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.19it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.54it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.57it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.70it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.56it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.66it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.61it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.18it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.13it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.13it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.84it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.74it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.78it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.72it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.62it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.71it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.55it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.62it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.76it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.79it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.63it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.74it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.25it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.29it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.23it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.40it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.38it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.38it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.26it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.27it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.38it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.52it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.55it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.60it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.27it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.28it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.38it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.42it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.31it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.35it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.32it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.29it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.33it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.69it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.56it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.55it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.55it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.33it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.28it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 106.95it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.35it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.42it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.81it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.73it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.71it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.37it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.54it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.43it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.29it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.02it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.08it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 106.95it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.22it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.27it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.28it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.40it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.42it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.32it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.02it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.08it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 106.75it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 122.95it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.06it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.20it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 122.88it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.75it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.28it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.05it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.13it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 106.96it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 122.74it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.75it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.57it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.59it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.58it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 106.94it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.20it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.87it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.74it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.74it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.66it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.29it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.28it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.34it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.02it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.13it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.36it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.96it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.74it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.57it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.44it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.56it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.61it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.04it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 122.99it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.18it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.57it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.46it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.57it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.26it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.30it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.47it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.60it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.61it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.66it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.36it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.36it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.35it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.71it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.77it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.66it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.37it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.34it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.35it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.48it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.44it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.46it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.47it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.51it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.58it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.46it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.32it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.25it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 106.70it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.06it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.27it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.56it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.41it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.36it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.53it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.57it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.70it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.00it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.23it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.38it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.19it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.20it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.28it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.26it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.49it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.66it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.61it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.34it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.52it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.47it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.52it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.52it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.04it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.15it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.03it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.35it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 122.99it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.99it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.24it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.24it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.39it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 108.04it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.88it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.80it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 106.58it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.03it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 127.81it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.23it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.18it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.22it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.13it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.19it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.21it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.38it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.55it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.54it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 106.95it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.13it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.18it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.16it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.51it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.47it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.35it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.29it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.22it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.35it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.35it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.37it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.43it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.41it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.44it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.33it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.34it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.38it/s]                                                             ddim-sample:   0%|          | 0/50 [00:00<?, ?it/s]ddim-sample:  22%|██▏       | 11/50 [00:00<00:00, 107.73it/s]ddim-sample:  50%|█████     | 25/50 [00:00<00:00, 123.60it/s]ddim-sample:  78%|███████▊  | 39/50 [00:00<00:00, 128.72it/s]                                                             [eval-ddpm] PSNR in/base: 25.73 / 33.53  MAE in/base: 0.0447 / 0.0183  SSIM in/base: 0.7209 / 0.9260
+[eval-ddpm] blend=0 max |out - base| = 0.000000 (must be ~0; verifies sampling pipeline is conservative)
+[eval-ddpm] blend=0.000  PSNR=33.53 (Δ_base=+0.00)  MAE=0.0183 (Δ_base=+0.0000)  SSIM=0.9260
+[eval-ddpm] blend=0.100  PSNR=33.52 (Δ_base=-0.02)  MAE=0.0184 (Δ_base=-0.0001)  SSIM=0.9257
+[eval-ddpm] blend=0.250  PSNR=33.41 (Δ_base=-0.13)  MAE=0.0183 (Δ_base=+0.0000)  SSIM=0.9233
+[eval-ddpm] blend=0.500  PSNR=32.85 (Δ_base=-0.68)  MAE=0.0193 (Δ_base=-0.0010)  SSIM=0.9139
+[eval-ddpm] blend=1.000  PSNR=31.38 (Δ_base=-2.15)  MAE=0.0223 (Δ_base=-0.0040)  SSIM=0.8784
+[eval-ddpm] best blend by PSNR: 0.0  by MAE: 0.25
+[eval-ddpm] by degradation_type (PSNR base -> per-blend):
+  blur                         n= 18  in=31.97  base=38.92  b0:38.92  b0.1:38.88  b0.25:38.51  b0.5:37.39  b1:34.73
+  blur_downsample_upsample     n= 99  in=31.22  base=35.51  b0:35.51  b0.1:35.50  b0.25:35.63  b0.5:34.99  b1:33.22
+  downsample_upsample          n= 18  in=32.04  base=32.59  b0:32.59  b0.1:32.59  b0.25:32.52  b0.5:32.24  b1:31.24
+  gaussian_additive            n= 23  in=19.13  base=34.30  b0:34.30  b0.1:34.30  b0.25:34.24  b0.5:33.93  b1:32.83
+  lowfreq_atmospheric_bias     n= 82  in=19.57  base=27.52  b0:27.52  b0.1:27.52  b0.25:27.51  b0.5:27.44  b1:27.13
+  mask_dropout                 n= 36  in=23.83  base=34.13  b0:34.13  b0.1:34.11  b0.25:33.94  b0.5:33.42  b1:32.08
+  mixed_structured             n= 91  in=21.08  base=26.44  b0:26.44  b0.1:26.45  b0.25:26.43  b0.5:26.36  b1:26.05
+  speckle_multiplicative       n=145  in=28.35  base=39.21  b0:39.21  b0.1:39.17  b0.25:38.81  b0.5:37.74  b1:35.09
+[eval-ddpm] wrote 256 grids and outputs/ddpm_residual_hard_10k_b6base_eval_ddim/metrics.json
+===== DONE =====
